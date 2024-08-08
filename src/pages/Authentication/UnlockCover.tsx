@@ -27,7 +27,7 @@ const UnlockCover = () => {
     const [flag, setFlag] = useState(themeConfig.locale);
 
     const submitForm = () => {
-        navigate('/');
+        navigate('/index');
     };
 
     return (

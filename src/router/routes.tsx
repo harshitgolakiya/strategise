@@ -104,12 +104,14 @@ const routes = [
     // dashboard
     {
         path: '/',
+        element: <LoginCover />,
+        layout: 'blank',
+    },
+
+    {
+        path: '/index',
         element: <Index />,
     },
-    // {
-    //     path: '/index',
-    //     element: <Index />,
-    // },
     // analytics page
     {
         path: '/analytics',
