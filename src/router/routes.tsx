@@ -99,6 +99,7 @@ const QuillEditor = lazy(() => import('../pages/Forms/QuillEditor'));
 const MarkDownEditor = lazy(() => import('../pages/Forms/MarkDownEditor'));
 const DateRangePicker = lazy(() => import('../pages/Forms/DateRangePicker'));
 const Clipboard = lazy(() => import('../pages/Forms/Clipboard'));
+// const AdminLogin = lazy(() => import('../admin/pages/Authentication/LoginCover'));
 
 const routes = [
     // dashboard
@@ -544,6 +545,11 @@ const routes = [
         element: <Error />,
         layout: 'blank',
     },
+    // {
+    //     path : '/admin/login',
+    //     element: <AdminLogin />,
+    //     layout: 'blank',
+    // }
 ];
 
 export { routes };

@@ -605,7 +605,7 @@ const Basic = () => {
     const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
     const [initialRecords, setInitialRecords] = useState(sortBy(rowData, 'id'));
     const [recordsData, setRecordsData] = useState(initialRecords);
-
+    const [selectedRecords, setSelectedRecords] = useState<any>([]);
     const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({ columnAccessor: 'id', direction: 'asc' });
 
     useEffect(() => {
@@ -658,6 +658,7 @@ const Basic = () => {
             markers: { size: [4, 7], strokeWidth: 0 },
             colors: [randomColor()],
             grid: { padding: { top: 5, bottom: 5 } },
+
             tooltip: {
                 x: { show: false },
                 y: {
@@ -703,7 +704,7 @@ const Basic = () => {
                                         <div className="font-semibold">{firstName + ' ' + lastName}</div>
                                     </div>
                                 ),
-                            },
+                            }, 
                             {
                                 accessor: 'country',
                                 title: 'Country',
@@ -778,6 +779,8 @@ const Basic = () => {
                         onRecordsPerPageChange={setPageSize}
                         sortStatus={sortStatus}
                         onSortStatusChange={setSortStatus}
+                        selectedRecords={selectedRecords}
+                        onSelectedRecordsChange={setSelectedRecords}
                         minHeight={200}
                         paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
                     />
