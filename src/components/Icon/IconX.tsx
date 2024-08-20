@@ -8,21 +8,11 @@ interface IconXProps {
 
 const IconX: FC<IconXProps> = ({ className, fill = false, duotone = true }) => {
     return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-        >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 3L3 9" stroke="#0E1726" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 3L9 9" stroke="#0E1726" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
+        
     );
 };
 

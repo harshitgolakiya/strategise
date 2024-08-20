@@ -1,11 +1,11 @@
-import { setPageTitle } from '../../store/themeConfigSlice';
+import { setPageTitle } from '../../../store/themeConfigSlice';
 import { useDispatch } from 'react-redux';
-import IconHome from '../../components/Icon/IconHome';
-import IconDollarSignCircle from '../../components/Icon/IconDollarSignCircle';
-import IconPhone from '../../components/Icon/IconPhone';
-import IconCompany from '../../components/Icon/IconCompany';
+import IconHome from '../../../components/Icon/IconHome';
+import IconDollarSignCircle from '../../../components/Icon/IconDollarSignCircle';
+import IconPhone from '../../../components/Icon/IconPhone';
+import IconCompany from '../../../components/Icon/IconCompany';
 import Tippy from '@tippyjs/react';
-import IconX from '../../components/Icon/IconX';
+import IconX from '../../../components/Icon/IconX';
 import { useEffect, useState } from 'react';
 import { ReactSortable } from 'react-sortablejs';
 
@@ -221,7 +221,7 @@ const AccountSetting = () => {
                                     </div>
                                     <div>
                                         <label htmlFor="phone">Phone</label>
-                                        <input id="phone" type="text" placeholder="+971-xx-xxx-xxxx" className="form-input" />
+                                        <input id="phone" type="text" placeholder="+1 (530) 555-12121" className="form-input" />
                                     </div>
                                     <div>
                                         <label htmlFor="email">Email</label>
@@ -400,7 +400,7 @@ const AccountSetting = () => {
                         </div>
 
                         <div className="flex gap-5 justify-between items-center	">
-                            <div className="bg-white w-full p-4 border border-[#ebedf2] dark:border-[#191e3a] rounded-md">
+                            <div className="bg-white w-full p-3 border border-[#ebedf2] dark:border-[#191e3a] rounded-md">
                                 <div className="flex justify-between items-center mb-3">
                                     <p className="text-lg font-bold ">Key Personal</p>
                                     <button onClick={() => toggleTabs('danger-zone')} className="btn btn-primary flex gap-2 p-2">
@@ -432,7 +432,7 @@ const AccountSetting = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="bg-white w-full p-4 rounded-md border border-[#ebedf2] dark:border-[#191e3a]">
+                            <div className="bg-white w-full p-3 rounded-md border border-[#ebedf2] dark:border-[#191e3a]">
                                 <div className="flex justify-between items-center mb-3">
                                     <p className="text-lg font-bold ">Advisory Board</p>
                                     <button onClick={() => toggleTabs('danger-zone')} className="btn btn-primary flex gap-2 p-2 ">

@@ -135,7 +135,7 @@ const DragAndDrop = () => {
             </ul>
 
             <div className="dragndrop space-y-8">
-                <div className="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+                {/* <div className="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
                     <div className="ring-2 ring-primary/30 rounded-full bg-primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
                         <IconBell />
                     </div>
@@ -143,7 +143,7 @@ const DragAndDrop = () => {
                     <a href="https://www.npmjs.com/package/react-sortablejs" target="_blank" className="block hover:underline" rel="noreferrer">
                         https://www.npmjs.com/package/react-sortablejs
                     </a>
-                </div>
+                </div> */}
                 {/* Sortable */}
                 <div className="panel">
                     <div className="font-semibold text-lg mb-5">Sortable</div>
