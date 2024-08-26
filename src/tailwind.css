@@ -137,7 +137,7 @@ hover:text-primary hover:before:!bg-primary ltr:before:mr-2 rtl:before:ml-2 dark
     .horizontal.toggle-sidebar .sidebar {
         @apply ltr:left-0 rtl:right-0 lg:ltr:-left-[260px] lg:rtl:-right-[260px];
     }
-
+   
     .horizontal .nav-item a div:first-child svg,
     .horizontal .nav-item button div:first-child svg {
         @apply w-5 h-5 text-black/50 dark:text-white/50;

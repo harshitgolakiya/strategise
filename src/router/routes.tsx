@@ -99,6 +99,9 @@ const QuillEditor = lazy(() => import('../pages/Forms/QuillEditor'));
 const MarkDownEditor = lazy(() => import('../pages/Forms/MarkDownEditor'));
 const DateRangePicker = lazy(() => import('../pages/Forms/DateRangePicker'));
 const Clipboard = lazy(() => import('../pages/Forms/Clipboard'));
+const Intentions = lazy(() => import('../pages/Intentions/Index'));
+const Description = lazy(() => import('../pages/Intentions/Description'));
+
 // const AdminLogin = lazy(() => import('../admin/pages/Authentication/LoginCover'));
 
 const routes = [
@@ -532,6 +535,14 @@ const routes = [
         element: <DateRangePicker />,
     },
     {
+        path: '/Intentions/index',
+        element: <Intentions />,
+    },
+    {
+        path: '/Intentions/Description',
+        element: <Description />,
+    },
+    {
         path: '/forms/clipboard',
         element: <Clipboard />,
     },
@@ -545,6 +556,7 @@ const routes = [
         element: <Error />,
         layout: 'blank',
     },
+
     // {
     //     path : '/admin/login',
     //     element: <AdminLogin />,

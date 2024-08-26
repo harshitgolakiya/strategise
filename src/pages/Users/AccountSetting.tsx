@@ -171,19 +171,19 @@ const AccountSetting = () => {
                                 Manage Account
                             </button>
                         </li>
-                        {tabs === 'home' && (
+                        {/* {tabs === 'home' && (
                             <li className="ml-auto">
                                 <button onClick={() => toggleTabs('danger-zone')} className={`btn btn-primary flex gap-2 p-2 mt-2 `}>
                                     <IconCompany />
                                     Add Company
                                 </button>
                             </li>
-                        )}
+                        )} */}
                     </ul>
                 </div>
                 {tabs === 'home' ? (
                     <div>
-                        <form className="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 mb-5 bg-white dark:bg-black">
+                        <form className="border border-[#ebedf2] dark:border-[#191e3a] rounded-3xl p-4 mb-5 bg-white dark:bg-black">
                             <h6 className="text-lg font-bold mb-5">Company Information</h6>
                             <div className="flex flex-col sm:flex-row">
                                 <div className="ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">
@@ -237,15 +237,16 @@ const AccountSetting = () => {
                                             <span className="text-white-dark relative checked:bg-none">Make this my default Company</span>
                                         </label>
                                     </div>
-                                    {/* <div className="sm:col-span-2 mt-3">
-                                        <button type="button" className="btn btn-primary">
-                                            Save
+                                    <div className="sm:col-span-2 mt-3 ml-auto">
+                                        <button type="button" className="btn btn-primary rounded-full">
+                                            <IconCompany />
+                                            Add Company
                                         </button>
-                                    </div> */}
+                                    </div>
                                 </div>
                             </div>
                         </form>
-                        <div className="bg-white p-4 mb-5 rounded border border-[#ebedf2] dark:border-[#191e3a]">
+                        <div className="bg-white p-4 mb-5 rounded-3xl border border-[#ebedf2] dark:border-[#191e3a]">
                             <div>
                                 <p className="text-lg font-bold mb-5">Company List</p>
                             </div>
@@ -315,10 +316,10 @@ const AccountSetting = () => {
                             </table>
                         </div>
 
-                        <div className="bg-white p-4 mb-5 rounded border border-[#ebedf2] dark:border-[#191e3a]">
+                        <div className="bg-white p-4 mb-5 rounded-3xl border border-[#ebedf2] dark:border-[#191e3a]">
                             <div className="flex justify-between align-center">
                                 <p className="text-lg font-bold ">Products / Services</p>
-                                <button onClick={() => toggleTabs('danger-zone')} className="btn btn-primary flex gap-2 p-2 mb-3">
+                                <button onClick={() => toggleTabs('danger-zone')} className="btn btn-primary rounded-full flex gap-2 p-2 mb-3">
                                     <IconCompany />
                                     Add New
                                 </button>
@@ -400,10 +401,10 @@ const AccountSetting = () => {
                         </div>
 
                         <div className="flex gap-5 justify-between items-center	">
-                            <div className="bg-white w-full p-4 border border-[#ebedf2] dark:border-[#191e3a] rounded-md">
+                            <div className="bg-white w-full p-4 border border-[#ebedf2] dark:border-[#191e3a] rounded-3xl">
                                 <div className="flex justify-between items-center mb-3">
                                     <p className="text-lg font-bold ">Key Personal</p>
-                                    <button onClick={() => toggleTabs('danger-zone')} className="btn btn-primary flex gap-2 p-2">
+                                    <button onClick={() => toggleTabs('danger-zone')} className="btn btn-primary rounded-full flex gap-2 p-2">
                                         <IconCompany />
                                         Manage
                                     </button>
@@ -432,10 +433,10 @@ const AccountSetting = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="bg-white w-full p-4 rounded-md border border-[#ebedf2] dark:border-[#191e3a]">
+                            <div className="bg-white w-full p-4 rounded-3xl border border-[#ebedf2] dark:border-[#191e3a]">
                                 <div className="flex justify-between items-center mb-3">
                                     <p className="text-lg font-bold ">Advisory Board</p>
-                                    <button onClick={() => toggleTabs('danger-zone')} className="btn btn-primary flex gap-2 p-2 ">
+                                    <button onClick={() => toggleTabs('danger-zone')} className="btn btn-primary rounded-full flex gap-2 p-2 ">
                                         <IconCompany />
                                         Manage
                                     </button>
@@ -471,8 +472,8 @@ const AccountSetting = () => {
                 )}
                 {tabs === 'payment-details' ? (
                     <div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
-                            <div className="panel">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5 rounded-3xl">
+                            <div className="panel rounded-3xl">
                                 <div className="mb-5">
                                     <h5 className="font-semibold text-lg mb-4">Billing Address</h5>
                                     <p>
@@ -515,9 +516,9 @@ const AccountSetting = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary">Add Address</button>
+                                <button className="btn btn-primary rounded-full">Add Address</button>
                             </div>
-                            <div className="panel">
+                            <div className="panel rounded-3xl">
                                 <div className="mb-5">
                                     <h5 className="font-semibold text-lg mb-4">Payment History</h5>
                                     <p>
@@ -569,11 +570,11 @@ const AccountSetting = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary">Add Payment Method</button>
+                                <button className="btn btn-primary rounded-full">Add Payment Method</button>
                             </div>
                         </div>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                            <div className="panel">
+                            <div className="panel rounded-3xl">
                                 <div className="mb-5">
                                     <h5 className="font-semibold text-lg mb-4">Add Billing Address</h5>
                                     <p>
@@ -613,13 +614,13 @@ const AccountSetting = () => {
                                                 <input id="billingZip" type="text" placeholder="Enter Zip" className="form-input" />
                                             </div>
                                         </div>
-                                        <button type="button" className="btn btn-primary">
+                                        <button type="button" className="btn btn-primary rounded-full">
                                             Add
                                         </button>
                                     </form>
                                 </div>
                             </div>
-                            <div className="panel">
+                            <div className="panel rounded-3xl">
                                 <div className="mb-5">
                                     <h5 className="font-semibold text-lg mb-4">Add Payment Method</h5>
                                     <p>
@@ -660,7 +661,7 @@ const AccountSetting = () => {
                                                 <input id="payExp" type="text" placeholder="Card Expiry" className="form-input" />
                                             </div>
                                         </div>
-                                        <button type="button" className="btn btn-primary">
+                                        <button type="button" className="btn btn-primary rounded-full">
                                             Add
                                         </button>
                                     </form>
@@ -671,7 +672,7 @@ const AccountSetting = () => {
                 ) : (
                     ''
                 )}
-                {tabs === 'preferences' ? (
+                {/* {tabs === 'preferences' ? (
                     <div className="switch">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
                             <div className="panel space-y-5">
@@ -767,16 +768,16 @@ const AccountSetting = () => {
                     </div>
                 ) : (
                     ''
-                )}
+                )} */}
                 {tabs === 'danger-zone' ? (
                     <div className="switch">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                            <div className="panel space-y-5">
+                            <div className="panel space-y-5 rounded-3xl">
                                 <h5 className="font-semibold text-lg mb-4">Purge Cache</h5>
                                 <p>Remove the active resource from the cache without waiting for the predetermined cache expiry time.</p>
-                                <button className="btn btn-secondary">Clear</button>
+                                <button className="btn btn-secondary rounded-full">Clear</button>
                             </div>
-                            <div className="panel space-y-5">
+                            <div className="panel space-y-5 rounded-3xl">
                                 <h5 className="font-semibold text-lg mb-4">Deactivate Account</h5>
                                 <p>You will not be able to receive messages, notifications for up to 24 hours.</p>
                                 <label className="w-12 h-6 relative">
@@ -784,10 +785,10 @@ const AccountSetting = () => {
                                     <span className="bg-[#ebedf2] dark:bg-dark block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white-dark dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-primary before:transition-all before:duration-300"></span>
                                 </label>
                             </div>
-                            <div className="panel space-y-5">
+                            <div className="panel space-y-5 rounded-3xl">
                                 <h5 className="font-semibold text-lg mb-4">Delete Account</h5>
                                 <p>Once you delete the account, there is no going back. Please be certain.</p>
-                                <button className="btn btn-danger btn-delete-account">Delete my account</button>
+                                <button className="btn btn-danger btn-delete-account rounded-full">Delete my account</button>
                             </div>
                         </div>
                     </div>
