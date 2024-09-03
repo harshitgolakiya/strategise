@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import Setting from '../components/Layouts/Setting';
 const Index = lazy(() => import('../pages/Index'));
 const Analytics = lazy(() => import('../pages/Analytics'));
 const Finance = lazy(() => import('../pages/Finance'));
@@ -63,6 +64,9 @@ const Export = lazy(() => import('../pages/DataTables/Export'));
 const ColumnChooser = lazy(() => import('../pages/DataTables/ColumnChooser'));
 const Profile = lazy(() => import('../pages/Users/Profile'));
 const AccountSetting = lazy(() => import('../pages/Users/AccountSetting'));
+const CompanySetting = lazy(() => import('../pages/Users/Company/CompanySetting'));
+
+
 const KnowledgeBase = lazy(() => import('../pages/Pages/KnowledgeBase'));
 const ContactUsBoxed = lazy(() => import('../pages/Pages/ContactUsBoxed'));
 const ContactUsCover = lazy(() => import('../pages/Pages/ContactUsCover'));
@@ -101,7 +105,7 @@ const DateRangePicker = lazy(() => import('../pages/Forms/DateRangePicker'));
 const Clipboard = lazy(() => import('../pages/Forms/Clipboard'));
 const Intentions = lazy(() => import('../pages/Intentions/Index'));
 const Description = lazy(() => import('../pages/Intentions/Description'));
-
+const DnaComponent = lazy(() => import('../pages/Dna/CompanyDna'));
 // const AdminLogin = lazy(() => import('../admin/pages/Authentication/LoginCover'));
 
 const routes = [
@@ -387,6 +391,12 @@ const routes = [
         path: '/users/user-account-settings',
         element: <AccountSetting />,
     },
+
+    //company settings
+    {
+        path: '/company/company-account-settings',
+        element: <CompanySetting />,
+    },
     // pages
     {
         path: '/pages/knowledge-base',
@@ -535,12 +545,16 @@ const routes = [
         element: <DateRangePicker />,
     },
     {
-        path: '/Intentions/index',
+        path: '/intentions/strategic-intentions',
+        element: <Description />,
+    },
+    {
+        path: '/intentions/business-idea-generation',
         element: <Intentions />,
     },
     {
-        path: '/Intentions/Description',
-        element: <Description />,
+        path: '/Company-DNA',
+        element: <DnaComponent />,
     },
     {
         path: '/forms/clipboard',

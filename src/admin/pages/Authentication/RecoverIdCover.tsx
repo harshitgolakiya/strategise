@@ -7,6 +7,8 @@ import { IRootState } from '../../../store';
 import i18next from 'i18next';
 import IconCaretDown from '../../components/Icon/IconCaretDown';
 import IconMail from '../../components/Icon/IconMail';
+import StrategiseLogo from '../../assets/logo/StrategiseLogo';
+
 
 const RecoverIdCover = () => {
     const dispatch = useDispatch();
@@ -45,7 +47,7 @@ const RecoverIdCover = () => {
                         <div className="absolute inset-y-0 w-8 from-primary/10 via-transparent to-transparent ltr:-right-10 ltr:bg-gradient-to-r rtl:-left-10 rtl:bg-gradient-to-l xl:w-16 ltr:xl:-right-20 rtl:xl:-left-20"></div>
                         <div className="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
                             <Link to="/" className="w-48 block lg:w-72 ms-10">
-                                <img src="/assets/images/auth/logo-white.svg" alt="Logo" className="w-full" />
+                                <StrategiseLogo />
                             </Link>
                             <div className="mt-24 hidden w-full max-w-[430px] lg:block">
                                 <img src="/assets/images/auth/reset-password.svg" alt="Cover Image" className="w-full" />
@@ -117,7 +119,7 @@ const RecoverIdCover = () => {
                                 </button>
                             </form>
                         </div>
-                        <p className="absolute bottom-6 w-full text-center dark:text-white">© {new Date().getFullYear()}.VRISTO All Rights Reserved.</p>
+                        <p className="absolute bottom-6 w-full text-center dark:text-white">© {new Date().getFullYear()}.Strategise All Rights Reserved.</p>
                     </div>
                 </div>
             </div>

@@ -124,7 +124,7 @@ const App: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {ideas.map((idea, index) => (
                     <div key={index} className="border border-gray-300 bg-white p-4 rounded-3xl shadow-sm w-full">
-                        <div className="flex justify-between items-center mb-4">
+                        <div className="flex justify-between items-center mb-1">
                             <h3 className="text-lg font-semibold">Business Idea {index + 1}</h3>
                             <button onClick={openModal} className="btn btn-outline-primary rounded-full">
                                 Evaluate Idea

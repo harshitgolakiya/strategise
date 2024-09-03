@@ -7,6 +7,8 @@ import Dropdown from '../../components/Dropdown';
 import i18next from 'i18next';
 import IconCaretDown from '../../components/Icon/IconCaretDown';
 import IconLockDots from '../../components/Icon/IconLockDots';
+import StrategiseLogo from '../../assets/logo/StrategiseLogo';
+
 
 const UnlockBox = () => {
     const dispatch = useDispatch();

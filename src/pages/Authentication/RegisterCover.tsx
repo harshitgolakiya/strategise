@@ -13,6 +13,8 @@ import IconInstagram from '../../components/Icon/IconInstagram';
 import IconFacebookCircle from '../../components/Icon/IconFacebookCircle';
 import IconTwitter from '../../components/Icon/IconTwitter';
 import IconGoogle from '../../components/Icon/IconGoogle';
+import StrategiseLogo from '../../assets/logo/StrategiseLogo';
+
 
 const RegisterCover = () => {
     const dispatch = useDispatch();

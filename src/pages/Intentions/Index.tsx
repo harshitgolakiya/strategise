@@ -11,10 +11,10 @@ import App from './IdeaManager'
 const tableData = [
     {
         id: 1,
-        name: 'John Doe',
+        name: 'Business 1',
         email: 'johndoe@yahoo.com',
         date: '10/08/2020',
-        sale: 120,
+        score: 12,
         status: 'Complete',
         register: '5 min ago',
         progress: '40%',
@@ -23,10 +23,10 @@ const tableData = [
     },
     {
         id: 2,
-        name: 'Shaun Park',
+        name: 'Business 2',
         email: 'shaunpark@gmail.com',
         date: '11/08/2020',
-        sale: 400,
+        score: 14,
         status: 'Pending',
         register: '11 min ago',
         progress: '23%',
@@ -35,10 +35,10 @@ const tableData = [
     },
     {
         id: 3,
-        name: 'Alma Clarke',
+        name: 'Business 3',
         email: 'alma@gmail.com',
         date: '12/02/2020',
-        sale: 310,
+        score: 25,
         status: 'In Progress',
         register: '1 hour ago',
         progress: '80%',
@@ -47,10 +47,10 @@ const tableData = [
     },
     {
         id: 4,
-        name: 'Vincent Carpenter',
+        name: 'Business 4',
         email: 'vincent@gmail.com',
         date: '13/08/2020',
-        sale: 100,
+        score: 23,
         status: 'Canceled',
         register: '1 day ago',
         progress: '60%',
@@ -107,7 +107,7 @@ const Intentions = () => {
                                                 <div className="whitespace-nowrap">{data.name}</div>
                                             </td>
                                             <td>{data.date}</td>
-                                            <td>{data.sale}</td>
+                                            <td>{data.score}</td>
                                             <td>
                                                 <div
                                                     className={`whitespace-nowrap ${
