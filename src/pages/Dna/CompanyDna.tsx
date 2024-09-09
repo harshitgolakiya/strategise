@@ -7,6 +7,7 @@ const CompanyValuesIcon = () => <img className="ml-[5px] flex-none" src="/assets
 const OrganisationalHabitsIcon = () => <img className="ml-[5px] flex-none" src="/assets/images/company-culture 1.svg" alt="logo" />;
 const CorporateCommunityIcon = () => <img className="ml-[5px] flex-none" src="/assets/images/team1.svg" alt="logo" />;
 const BrandPromiseIcon = () => <img className="ml-[5px] flex-none" src="/assets/images/promise1.svg" alt="logo" />;
+
 const MoreArrow = () => (
     <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -40,7 +41,7 @@ interface InfoCardProps {
     closeExpansion: (id: string) => void;
 }
 const InfoCard: React.FC<InfoCardProps> = ({ id, title, icon: Icon, content, expandedContent, colspan, isExpanded, toggleExpansion, closeExpansion }) => (
-    <div className={`bg-white rounded-xl shadow-md p-6 ${colspan} ${isExpanded ? 'row-span-3' : 'row-span-1'} transition-all duration-300 ease-in-out flex flex-col justify-between`}>
+    <div className={`bg-white rounded-xl shadow-md p-6 ${colspan} ${isExpanded ? 'row-span-3 border border-[#605EFD]' : 'row-span-1'} transition-all duration-300 ease-in-out flex flex-col justify-between`}>
         <div className="flex justify-between items-start mb-4">
             <h2 className="text-xl font-bold text-gray-800">{title}</h2>
             <Icon />
@@ -266,38 +267,58 @@ Strive for excellence`,
                         <div className=""></div>
                     </div>
                     <div className="grid grid-cols-12 gap-4">
-                        <textarea
-                            className="font-semibold border resize-none text-[14px] text-[#888EA8] border-white-light dark:border-[#1b2e4b] px-3 py-2 rounded col-span-5"
-                            placeholder="Be customer-centric"
-                        ></textarea>
-                        <textarea
-                            className="border border-white-light resize-none dark:border-[#1b2e4b] px-3 py-2 rounded col-span-7 h-24 text-[14px] text-[#888EA8]"
-                            placeholder="We prioritize the needs and perspective of our clients in every decision and actions, ensuring their success drives our success."
-                        ></textarea>
-                        <textarea
-                            className="border border-white-light resize-none dark:border-[#1b2e4b] px-3 py-2 rounded col-span-5 h-24 text-[14px] text-[#888EA8]"
-                            placeholder="Create to Innovate"
-                        ></textarea>
-                        <textarea
-                            className="border border-white-light resize-none dark:border-[#1b2e4b] px-3 py-2 rounded col-span-7 h-24 text-[14px] text-[#888EA8]"
-                            placeholder="We continuously seek and implement creative solutions and forward-thinking strategies to stay ahead in a dynamic business landscape."
-                        ></textarea>
-                        <textarea
-                            className="border border-white-light resize-none dark:border-[#1b2e4b] px-3 py-2 rounded col-span-5 h-24 text-[14px] text-[#888EA8]"
-                            placeholder="Empower with integrity"
-                        ></textarea>
-                        <textarea
-                            className="border border-white-light resize-none dark:border-[#1b2e4b] px-3 py-2 rounded col-span-7 h-24 text-[14px] text-[#888EA8]"
-                            placeholder="  We enable and support our team and clients to take initiative, make informed decisions, and achieve their full potential."
-                        ></textarea>
-                        <textarea
-                            className="border border-white-light resize-none dark:border-[#1b2e4b] px-3 py-2 rounded col-span-5 h-24 text-[14px] text-[#888EA8]"
-                            placeholder="Strive for Excellence"
-                        ></textarea>
-                        <textarea
-                            className="border border-white-light resize-none dark:border-[#1b2e4b] px-3 py-2 rounded col-span-7 h-24 text-[14px] text-[#888EA8]"
-                            placeholder="We commit to the highest standards of quality and performance in everything we do, striving for exceptional outcomes and continuous improvement."
-                        ></textarea>
+                        <div className="col-span-5">
+                            <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
+                                <textarea className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Be customer-centric"></textarea>
+                            </div>
+                        </div>
+                        <div className="col-span-7">
+                            <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
+                                <textarea
+                                    className="resize-none scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200 text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    placeholder="We prioritize the needs and perspective of our clients in every decision and actions, ensuring their success drives our success."
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div className="col-span-5">
+                            <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
+                                <textarea className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Create to Innovate"></textarea>
+                            </div>
+                        </div>
+                        <div className="col-span-7">
+                            <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
+                                <textarea
+                                    className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    placeholder="We continuously seek and implement creative solutions and forward-thinking strategies to stay ahead in a dynamic business landscape."
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div className="col-span-5">
+                            <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
+                                <textarea className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Empower with integrity"></textarea>
+                            </div>
+                        </div>
+                        <div className="col-span-7">
+                            <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
+                                <textarea
+                                    className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    placeholder="We enable and support our team and clients to take initiative, make informed decisions, and achieve their full potential."
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div className="col-span-5">
+                            <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
+                                <textarea className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Strive for Excellence"></textarea>
+                            </div>
+                        </div>
+                        <div className="col-span-7">
+                            <div className="border border-white-light  focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
+                                <textarea
+                                    className="resize-none text-[14px] scrollbar-hide  text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded focus:border-black"
+                                    placeholder="We commit to the highest standards of quality and performance in everything we do, striving for exceptional outcomes and continuous improvement."
+                                ></textarea>
+                            </div>
+                        </div>
                     </div>
                 </>
             ),

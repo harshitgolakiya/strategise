@@ -5,47 +5,36 @@ interface Idea {
     issue: string;
     solution: string;
     proposed: string;
+    scores: Record<string, number>; // Add scores to each idea
 }
 
 const ScoringModal: React.FC<{
     isOpen: boolean;
     onClose: () => void;
-}> = ({ isOpen, onClose }) => {
-    const [scores, setScores] = useState({
-        costEffectiveness: 0,
-        feasibility: 0,
-        scalability: 0,
-        userAcceptance: 0,
-        innovation: 0,
-        userExperience: 0,
-        riskManagement: 0,
-        impact: 0,
-        sustainability: 0,
-        differentiation: 0,
-    });
-    const [sliderColor, setSliderColor] = useState('bg-blue-600');
+    currentIdeaScores: Record<string, number>;
+    updateScores: (newScores: Record<string, number>) => void;
+}> = ({ isOpen, onClose, currentIdeaScores, updateScores }) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setScores({
-            ...scores,
+        updateScores({
+            ...currentIdeaScores,
             [e.target.name]: Number(e.target.value),
         });
-
     };
 
-    const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
+    const totalScore = Object.values(currentIdeaScores).reduce((a, b) => a + b, 0);
 
     if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white p-3 rounded-3xl shadow-lg max-w-2xl w-full">
-                <div className='flex justify-between '>
-                    <h1 className="text-xl font-bold r mb-3">Evaluate Idea</h1>
+            <div className="bg-white py-4 px-5 rounded-3xl shadow-lg max-w-2xl w-full">
+                <div className="flex justify-between ">
+                    <h1 className="text-xl font-bold mb-3">Evaluate Idea</h1>
                     <h2 className="text-lg font-semibold text-right mb-4">Total Score: {totalScore}</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                    {Object.keys(scores).map((key) => {
-                        const value = scores[key as keyof typeof scores];
+                    {Object.keys(currentIdeaScores).map((key) => {
+                        const value = currentIdeaScores[key as keyof typeof currentIdeaScores];
 
                         // Function to determine the slider color based on its value
                         const getColorClass = (value: number) => {
@@ -90,33 +79,84 @@ const ScoringModal: React.FC<{
 };
 
 const App: React.FC = () => {
-    const [ideas, setIdeas] = useState<Idea[]>([{ issue: '', solution: '', proposed: '' }]);
-
+    const [ideas, setIdeas] = useState<Idea[]>([
+        {
+            issue: '',
+            solution: '',
+            proposed: '',
+            scores: {
+                costEffectiveness: 0,
+                feasibility: 0,
+                scalability: 0,
+                userAcceptance: 0,
+                innovation: 0,
+                userExperience: 0,
+                riskManagement: 0,
+                impact: 0,
+                sustainability: 0,
+                differentiation: 0,
+            },
+        },
+    ]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentIdeaIndex, setCurrentIdeaIndex] = useState<number | null>(null); // Track the currently evaluated idea
 
-    const handleInputChange = (index: number, field: keyof Idea, value: string) => {
-        const newIdeas = [...ideas];
-        newIdeas[index][field] = value;
-        setIdeas(newIdeas);
-    };
+ const handleInputChange = (index: number, field: keyof Idea, value: string) => {
+     const newIdeas = [...ideas];
+     newIdeas[index] = {
+         ...newIdeas[index],
+         [field]: value, // This should correctly handle the string values
+     };
+     setIdeas(newIdeas);
+ };
+
 
     const addBusinessIdea = () => {
         const lastIdea = ideas[ideas.length - 1];
 
         // Check if all fields in the last idea are filled
         if (lastIdea.issue && lastIdea.solution && lastIdea.proposed) {
-            setIdeas([...ideas, { issue: '', solution: '', proposed: '' }]);
+            setIdeas([
+                ...ideas,
+                {
+                    issue: '',
+                    solution: '',
+                    proposed: '',
+                    scores: {
+                        costEffectiveness: 0,
+                        feasibility: 0,
+                        scalability: 0,
+                        userAcceptance: 0,
+                        innovation: 0,
+                        userExperience: 0,
+                        riskManagement: 0,
+                        impact: 0,
+                        sustainability: 0,
+                        differentiation: 0,
+                    },
+                },
+            ]);
         } else {
             alert('Please fill out all fields before adding a new idea.');
         }
     };
 
-    const openModal = () => {
+    const openModal = (index: number) => {
+        setCurrentIdeaIndex(index);
         setIsModalOpen(true);
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
+        setCurrentIdeaIndex(null); // Reset the current idea being evaluated
+    };
+
+    const updateScores = (newScores: Record<string, number>) => {
+        if (currentIdeaIndex !== null) {
+            const updatedIdeas = [...ideas];
+            updatedIdeas[currentIdeaIndex].scores = newScores;
+            setIdeas(updatedIdeas);
+        }
     };
 
     return (
@@ -126,7 +166,7 @@ const App: React.FC = () => {
                     <div key={index} className="border border-gray-300 bg-white p-4 rounded-3xl shadow-sm w-full">
                         <div className="flex justify-between items-center mb-1">
                             <h3 className="text-lg font-semibold">Business Idea {index + 1}</h3>
-                            <button onClick={openModal} className="btn btn-outline-primary rounded-full">
+                            <button onClick={() => openModal(index)} className="btn btn-outline-primary rounded-full">
                                 Evaluate Idea
                             </button>
                         </div>
@@ -170,7 +210,7 @@ const App: React.FC = () => {
                 </div>
             </div>
 
-            <ScoringModal isOpen={isModalOpen} onClose={closeModal} />
+            {currentIdeaIndex !== null && <ScoringModal isOpen={isModalOpen} onClose={closeModal} currentIdeaScores={ideas[currentIdeaIndex].scores} updateScores={updateScores} />}
         </div>
     );
 };
