@@ -93,7 +93,8 @@ const StrategicIntentionsTable: React.FC = () => {
                     <thead>
                         <tr>
                             <th>
-                                <input type="checkbox" className="form-checkbox" checked={isHeaderChecked} onChange={handleHeaderCheckboxChange} />
+                                {/* <input type="checkbox" className="form-checkbox" checked={isHeaderChecked} onChange={handleHeaderCheckboxChange} /> */}
+                                Select
                             </th>
                             <th>Intentions</th>
                             <th>Description</th>

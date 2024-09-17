@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import Setting from '../components/Layouts/Setting';
+import path from 'path';
 const Index = lazy(() => import('../pages/Index'));
 const Analytics = lazy(() => import('../pages/Analytics'));
 const Finance = lazy(() => import('../pages/Finance'));
@@ -104,9 +105,15 @@ const Clipboard = lazy(() => import('../pages/Forms/Clipboard'));
 const Intentions = lazy(() => import('../pages/Intentions/Index'));
 const Description = lazy(() => import('../pages/Intentions/Description'));
 const DnaComponent = lazy(() => import('../pages/Dna/CompanyDna'));
+const IdeaManager = lazy(() => import('../pages/Intentions/IdeaManager2'));
 // const AdminLogin = lazy(() => import('../admin/pages/Authentication/LoginCover'));
 
 const routes = [
+    {
+        path: '/ideamanager2',
+        element: <IdeaManager />,
+
+    },
     // dashboard
     {
         path: '/',

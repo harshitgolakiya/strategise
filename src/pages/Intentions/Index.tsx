@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../../store';
 import { setPageTitle } from '../../store/themeConfigSlice';
 import IconTrashLines from '../../components/Icon/IconTrashLines';
-import App from './IdeaManager';
+import IdeaManager from './IdeaManager';
 const IconX = () => {
     return (
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +40,7 @@ const tableData = [
         email: 'shaunpark@gmail.com',
         date: '11/08/2020',
         score: 14,
-        status: 'Pending',
+        status: 'Develop Idea',
         register: '11 min ago',
         progress: '23%',
         position: 'Designer',
@@ -52,7 +52,7 @@ const tableData = [
         email: 'alma@gmail.com',
         date: '12/02/2020',
         score: 25,
-        status: 'In Progress',
+        status: 'Evaluate Idea',
         register: '1 hour ago',
         progress: '80%',
         position: 'Accountant',
@@ -87,7 +87,7 @@ const Intentions = () => {
     };
 
     const handleShowAlert = () => {
-        setIsAlertVisible(true);
+        setIsAlertVisible(!isAlertVisible);
     };
 
     return (
@@ -147,9 +147,9 @@ const Intentions = () => {
                                                 className={`whitespace-nowrap ${
                                                     data.status === 'Complete'
                                                         ? 'text-success'
-                                                        : data.status === 'Pending'
+                                                        : data.status === 'Develop Idea'
                                                         ? 'text-secondary'
-                                                        : data.status === 'In Progress'
+                                                        : data.status === 'Evaluate Idea'
                                                         ? 'text-info'
                                                         : data.status === 'Canceled'
                                                         ? 'text-danger'
@@ -175,7 +175,7 @@ const Intentions = () => {
             </div>
 
             <div className="flex space-x-4 mt-5">
-                <App />
+                <IdeaManager />
             </div>
         </>
     );

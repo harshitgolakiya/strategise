@@ -6,18 +6,15 @@ interface Idea {
     solution: string;
     proposed: string;
     scores: Record<string, number>;
-    solutionDetails: Record<string, string>;
-    canEvaluate: boolean;
+    solutionDetails: Record<string, string>; // Store solution details
 }
 
-interface ScoringModalProps {
+const ScoringModal: React.FC<{
     isOpen: boolean;
     onClose: () => void;
     currentIdeaScores: Record<string, number>;
     updateScores: (newScores: Record<string, number>) => void;
-}
-
-const ScoringModal: React.FC<ScoringModalProps> = ({ isOpen, onClose, currentIdeaScores, updateScores }) => {
+}> = ({ isOpen, onClose, currentIdeaScores, updateScores }) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         updateScores({
             ...currentIdeaScores,
@@ -32,18 +29,14 @@ const ScoringModal: React.FC<ScoringModalProps> = ({ isOpen, onClose, currentIde
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <div className="bg-white py-4 px-5 rounded-3xl shadow-lg max-w-2xl w-full">
-                <div className="flex justify-between ">
-                    <h1 className="text-xl font-bold mb-3">Evaluate Idea</h1>
-                    <h2 className="text-lg font-semibold text-right mb-4">Total Score: {totalScore}</h2>
-                </div>
                 <div className="grid grid-cols-2 gap-4">
-                    {Object.entries(currentIdeaScores).map(([key, value]) => {
+                    {Object.keys(currentIdeaScores).map((key) => {
+                        const value = currentIdeaScores[key as keyof typeof currentIdeaScores];
                         const getColorClass = (value: number) => {
                             if (value > 0) return 'bg-green-600';
                             if (value < 0) return 'bg-red-600';
                             return 'bg-blue-600';
                         };
-
                         return (
                             <div key={key} className="mb-3">
                                 <label className="block font-semibold mb-1 capitalize">{key.replace(/([A-Z])/g, ' $1')}</label>
@@ -56,21 +49,12 @@ const ScoringModal: React.FC<ScoringModalProps> = ({ isOpen, onClose, currentIde
                                     onChange={handleChange}
                                     className={`w-full h-2 rounded-lg appearance-none cursor-pointer ${getColorClass(value)}`}
                                 />
-                                <div className="flex justify-between text-xs text-gray-600 mt-1">
-                                    <span className="text-red-600">-3</span>
-                                    <span className="text-red-600">-2</span>
-                                    <span className="text-red-600">-1</span>
-                                    <span className="text-blue-600">0</span>
-                                    <span className="text-green-600">+1</span>
-                                    <span className="text-green-600">+2</span>
-                                    <span className="text-green-600">+3</span>
-                                </div>
                             </div>
                         );
                     })}
                 </div>
                 <div className="mt-6 flex justify-end">
-                    <button onClick={onClose} className="btn h-9 btn-outline-primary rounded-full">
+                    <button onClick={onClose} className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
                         Close
                     </button>
                 </div>
@@ -79,58 +63,55 @@ const ScoringModal: React.FC<ScoringModalProps> = ({ isOpen, onClose, currentIde
     );
 };
 
-interface DevelopSolutionModalProps {
+const DevelopSolutionModal: React.FC<{
     isOpen: boolean;
     onClose: () => void;
     currentSolutionDetails: Record<string, string>;
     updateSolutionDetails: (newDetails: Record<string, string>) => void;
-    onAllFieldsFilled: () => void;
-}
-
-const DevelopSolutionModal: React.FC<DevelopSolutionModalProps> = ({ isOpen, onClose, currentSolutionDetails, updateSolutionDetails, onAllFieldsFilled }) => {
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onAllFieldsFilled: (isFilled: boolean) => void; // New prop for tracking field completion
+}> = ({ isOpen, onClose, currentSolutionDetails, updateSolutionDetails, onAllFieldsFilled }) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const updatedDetails = {
             ...currentSolutionDetails,
             [e.target.name]: e.target.value,
         };
         updateSolutionDetails(updatedDetails);
 
+        // Check if all fields are filled
         const allFieldsFilled = Object.values(updatedDetails).every((value) => value.trim() !== '');
-        if (allFieldsFilled) {
-            onAllFieldsFilled();
-        }
+        onAllFieldsFilled(allFieldsFilled);
     };
 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 sm:top-2 bg-black bg-opacity-50 flex items-center justify-center sm:left-32 sm:h-screen sm:w-screen ">
-            <div className="bg-white shadow-md rounded-3xl p-3 mt-3 border sm:w-4/5">
-                <h1 className="text-base font-semibold my-4">Develop Your Solution</h1>
-                <div className="sm:grid grid-cols-2 gap-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="bg-white py-4 px-5 rounded-3xl shadow-lg max-w-2xl w-full">
+                <div className="grid grid-cols-2 gap-4">
                     {[
-                        { label: 'SUBSTITUTE: What can you replace or change in your product, service, or problem?' },
-                        { label: 'INTEGRATE: How can you blend or combine your product, service, or issue with something else?' },
-                        { label: 'ADJUST: How can you take features from other products, services, or issues and apply them to yours?' },
-                        { label: 'IMPROVE: What aspects of your product, service, or issue can be increased, decreased, or changed to improve it?' },
-                        { label: 'REDEPLOY: What new or alternative uses can you discover for your product, service, or issue?' },
-                        { label: 'REMOVE: Which parts of your product, service, or issue can be taken out or made simpler?' },
-                        { label: 'INVERT: What can be turned upside down or reversed in your product, service, or issue?' },
+                        { label: 'SUBSTITUTE What can you replace or change?' },
+                        { label: 'INTEGRATE How can you blend or combine something?' },
+                        { label: 'ADJUST What features can you adapt from others?' },
+                        { label: 'IMPROVE What can be improved or changed?' },
+                        { label: 'REDEPLOY What alternative uses can you find?' },
+                        { label: 'REMOVE What parts can you take out or simplify?' },
+                        { label: 'INVERT What can you turn upside down or reverse?' },
                     ].map(({ label }) => (
-                        <div key={label} className="flex flex-col justify-between">
+                        <div key={label} className="min-h-36">
                             <label className="block font-semibold mb-1">{label}</label>
                             <textarea
-                                name={label.split(':')[0].toLowerCase()}
-                                value={currentSolutionDetails[label.split(':')[0].toLowerCase()] || ''}
+                                name={label.toLowerCase()}
+                                value={currentSolutionDetails[label.toLowerCase()] || ''}
                                 onChange={handleChange}
                                 className="w-full p-2 border border-gray-300 rounded-lg resize-none"
                                 rows={3}
+                                
                             ></textarea>
                         </div>
                     ))}
                 </div>
-                <div className="flex justify-end align-bottom mb-3 relative">
-                    <button onClick={onClose} className="btn h-9 btn-outline-primary rounded-full absolute bottom-0 right-0">
+                <div className="mt-6 flex justify-end">
+                    <button onClick={onClose} className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
                         Close
                     </button>
                 </div>
@@ -166,12 +147,12 @@ const App: React.FC = () => {
                 remove: '',
                 invert: '',
             },
-            canEvaluate: false,
         },
     ]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDevelopSolutionOpen, setIsDevelopSolutionOpen] = useState(false);
     const [currentIdeaIndex, setCurrentIdeaIndex] = useState<number | null>(null);
+    const [isEvaluateIdeaActive, setIsEvaluateIdeaActive] = useState(false);
 
     const handleInputChange = (index: number, field: keyof Idea, value: string) => {
         const newIdeas = [...ideas];
@@ -213,7 +194,6 @@ const App: React.FC = () => {
                         remove: '',
                         invert: '',
                     },
-                    canEvaluate: false,
                 },
             ]);
         } else {
@@ -255,12 +235,8 @@ const App: React.FC = () => {
         }
     };
 
-    const handleAllFieldsFilled = () => {
-        if (currentIdeaIndex !== null) {
-            const updatedIdeas = [...ideas];
-            updatedIdeas[currentIdeaIndex].canEvaluate = true;
-            setIdeas(updatedIdeas);
-        }
+    const handleAllFieldsFilled = (isFilled: boolean) => {
+        setIsEvaluateIdeaActive(isFilled);
     };
 
     return (
@@ -269,7 +245,6 @@ const App: React.FC = () => {
                 {ideas.map((idea, index) => (
                     <div key={index} className="border border-gray-300 bg-white p-4 rounded-3xl shadow-sm w-full">
                         <h3 className="text-lg font-semibold mb-2">Business Idea {index + 1}</h3>
-
                         <div className="mb-4">
                             <label className="block text-sm font-medium mb-1">Issue / Unmet Requirement</label>
                             <textarea
@@ -280,48 +255,26 @@ const App: React.FC = () => {
                                 onChange={(e) => handleInputChange(index, 'issue', e.target.value)}
                             ></textarea>
                         </div>
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium mb-1">Existing Solution</label>
-                            <textarea
-                                className="w-full p-2 border border-gray-300 rounded-lg resize-none"
-                                placeholder="Provide details of an existing solution (if any) to this issue/unmet requirement. If no solution exists, simply write 'No current solution'."
-                                rows={3}
-                                value={idea.solution}
-                                onChange={(e) => handleInputChange(index, 'solution', e.target.value)}
-                            ></textarea>
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium mb-1">Proposed Solution</label>
-                            <textarea
-                                className="w-full p-2 border border-gray-300 rounded-lg resize-none"
-                                placeholder="Outline your proposed solution to this issue/unmet need."
-                                rows={3}
-                                value={idea.proposed}
-                                onChange={(e) => handleInputChange(index, 'proposed', e.target.value)}
-                            ></textarea>
-                        </div>
                         <div className="grid grid-cols-2 gap-4">
                             <button onClick={() => openModal(index, 'develop')} className="btn btn-outline-primary rounded-full">
                                 Develop Solution
                             </button>
                             <button
                                 onClick={() => openModal(index, 'evaluate')}
-                                className={`btn btn-outline-primary rounded-full ${!idea.canEvaluate ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                disabled={!idea.canEvaluate}
+                                className={`btn btn-outline-primary rounded-full ${!isEvaluateIdeaActive ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                disabled={!isEvaluateIdeaActive}
                             >
                                 Evaluate Idea
                             </button>
                         </div>
                     </div>
                 ))}
-
                 <div className="text-center">
                     <button onClick={addBusinessIdea} className="bg-white w-full py-24 text-green-500 text-6xl hover:text-green-400 rounded-3xl flex items-center justify-center shadow-md">
                         <IconLargePlus />
                     </button>
                 </div>
             </div>
-
             {currentIdeaIndex !== null && (
                 <>
                     <ScoringModal isOpen={isModalOpen} onClose={closeModal} currentIdeaScores={ideas[currentIdeaIndex].scores} updateScores={updateScores} />

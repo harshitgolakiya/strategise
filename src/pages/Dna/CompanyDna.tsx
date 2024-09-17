@@ -47,7 +47,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ id, title, icon: Icon, content, exp
             <Icon />
         </div>
         <div className="flex-grow">
-            <p className="text-gray-600 mb-4 text-sm">{content}</p>
+            <p className="text-gray-500 mb-4 text-sm">{content}</p>
         </div>
         <a href="#" onClick={() => toggleExpansion(id)} className="text-blue-600 font-semibold flex items-center text-sm hover:underline" role="button" aria-expanded={isExpanded}>
             {isExpanded ? 'Less' : 'More'}
@@ -269,52 +269,58 @@ Strive for excellence`,
                     <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-5">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
-                                <textarea className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Be customer-centric"></textarea>
+                                <textarea className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Be customer-centric"></textarea>
                             </div>
                         </div>
                         <div className="col-span-7">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
                                 <textarea
-                                    className="resize-none scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200 text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    className="resize-none scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200 text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
                                     placeholder="We prioritize the needs and perspective of our clients in every decision and actions, ensuring their success drives our success."
                                 ></textarea>
                             </div>
                         </div>
                         <div className="col-span-5">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
-                                <textarea className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Create to Innovate"></textarea>
+                                <textarea className="resize-none text-[14px] text-black placeholder-[#888EA8]] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Create to Innovate"></textarea>
                             </div>
                         </div>
                         <div className="col-span-7">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
                                 <textarea
-                                    className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
                                     placeholder="We continuously seek and implement creative solutions and forward-thinking strategies to stay ahead in a dynamic business landscape."
                                 ></textarea>
                             </div>
                         </div>
                         <div className="col-span-5">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
-                                <textarea className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Empower with integrity"></textarea>
+                                <textarea
+                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    placeholder="Empower with integrity"
+                                ></textarea>
                             </div>
                         </div>
                         <div className="col-span-7">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
                                 <textarea
-                                    className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
                                     placeholder="We enable and support our team and clients to take initiative, make informed decisions, and achieve their full potential."
                                 ></textarea>
                             </div>
                         </div>
                         <div className="col-span-5">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
-                                <textarea className="resize-none text-[14px] text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Strive for Excellence"></textarea>
+                                <textarea
+                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    placeholder="Strive for Excellence"
+                                ></textarea>
                             </div>
                         </div>
                         <div className="col-span-7">
                             <div className="border border-white-light  focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
                                 <textarea
-                                    className="resize-none text-[14px] scrollbar-hide  text-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded focus:border-black"
+                                    className="resize-none text-[14px] scrollbar-hide  text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded focus:border-black"
                                     placeholder="We commit to the highest standards of quality and performance in everything we do, striving for exceptional outcomes and continuous improvement."
                                 ></textarea>
                             </div>
@@ -468,24 +474,38 @@ Strive for excellence`,
     ];
 
     return (
-        <div className="container mx-auto p-4">
-            <div className="grid grid-cols-12 gap-6">
-                {cardsData.map((card) => (
-                    <InfoCard
-                        key={card.id}
-                        id={card.id}
-                        title={card.title}
-                        icon={card.icon}
-                        colspan={card.colspan}
-                        content={card.content}
-                        expandedContent={card.expandedContent}
-                        // isExpanded={expandedCards[card.id] || false}
-                        isExpanded={expandedCardId === card.id}
-                        toggleExpansion={toggleExpansion}
-                        closeExpansion={closeExpansion}
-                    />
-                ))}
+        <>
+            <div className='mb-8'>
+                <div className="flex gap-4 items-center mb-4">
+                    <h1 className="text-xl font-bold ">DNA Components of 3D Actio</h1>
+                    <button type="button" className="btn btn-outline-primary rounded-full">
+                        Download Company DNA
+                    </button>
+                </div>
+                <p className='text-gray-500'>
+                    Your company's purpose provides the reason or reasons why your organisation exists, beyond making a profit, it articulates how your products/services benefit people. It answers the
+                    questions for your customers and employees: why do we exist and what would the world lose if we didn't exist? It has an external focus and remains constant over time.
+                </p>
             </div>
-        </div>
+            <div className="container mx-auto">
+                <div className="grid grid-cols-12 gap-6">
+                    {cardsData.map((card) => (
+                        <InfoCard
+                            key={card.id}
+                            id={card.id}
+                            title={card.title}
+                            icon={card.icon}
+                            colspan={card.colspan}
+                            content={card.content}
+                            expandedContent={card.expandedContent}
+                            // isExpanded={expandedCards[card.id] || false}
+                            isExpanded={expandedCardId === card.id}
+                            toggleExpansion={toggleExpansion}
+                            closeExpansion={closeExpansion}
+                        />
+                    ))}
+                </div>
+            </div>
+        </>
     );
 }
