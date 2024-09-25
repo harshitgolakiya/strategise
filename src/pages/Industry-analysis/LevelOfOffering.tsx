@@ -1,88 +1,147 @@
-import React from 'react';
-import ReactApexChart from 'react-apexcharts';
 import { useSelector } from 'react-redux';
 import { IRootState } from '../../store';
 import { bottom } from '@popperjs/core';
 import { ApexOptions } from 'apexcharts'; // Import ApexOptions for better typing
-
-interface ApexChartState {
-    series: number[];
-    options: ApexOptions; // Use ApexOptions for typing
-}
-
-class ApexChart extends React.Component<{}, ApexChartState> {
-    constructor(props: {}) {
-        super(props);
-        this.state = {
-            series: [76, 67, 61, 90, 66, 68],
-            options: {
-                chart: {
-                    height: 390,
-                    type: 'radialBar',
+import React, { useState } from 'react';
+import ReactApexChart from 'react-apexcharts';
+const ApexChart: React.FC = () => {
+    const series = [76, 67, 61, 90, 66, 68, 78];
+    const options: ApexOptions = {
+        chart: {
+            height: 550,
+            width: 800,
+            type: 'radialBar',
+        },
+        plotOptions: {
+            radialBar: {
+                offsetY: 0,
+                startAngle: 0,
+                endAngle: 180,
+                hollow: {
+                    margin: 5,
+                    size: '15%',
+                    background: 'transparent',
                 },
-                plotOptions: {
-                    radialBar: {
-                        offsetY: 0,
-                        startAngle: 0,
-                        endAngle: 180,
-                        hollow: {
-                            margin: 5,
-                            size: '30%',
-                            background: 'transparent',
-                        },
-                        dataLabels: {
-                            name: {
-                                show: true,
-                            },
-                            value: {
-                                show: true,
-                                fontSize: '16px',
-                                formatter: (val: number) => `${val}`,
-                            },
-                        },
-                    },
+                track: {
+                    show: true,
+                    background: '#f2f2f2',
+                    strokeWidth: '97%',
+                    opacity: 0,
+                    margin: 5,
                 },
-                fill: {
-                    type: 'gradient',
-                    gradient: {
-                        shade: 'dark',
-                        type: 'horizontal', // Adjusting to horizontal
-                        gradientToColors: ['#60A5FA', '#1E3A8A'], // From light to dark blue
-                        stops: [0, 100], // Define a two-point gradient (from start to end)
-                    },
+                dataLabels: {
+                    show: false,
                 },
-                labels: ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn', 'Skype', 'Whatsapp'],
-                colors: ['#93C5FD'], // Base color for the gradient
-                responsive: [
-                    {
-                        breakpoint: 480,
-                        options: {
-                            legend: {
-                                show: true,
-                            },
-                        },
-                    },
+            },
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'light',
+                type: 'vertical', // Set gradient direction to vertical
+                shadeIntensity: 0.5,
+                gradientToColors: ['#2f6eba'], // End color (darker)
+                inverseColors: false,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100],
+                colorStops: [
+                    { offset: 0, color: '#ebf2f8', opacity: 1 }, // Start color (lighter)
+                    { offset: 100, color: '#4361EE', opacity: 1 }, // End color (darker)
                 ],
             },
-        };
-    }
+        },
+        colors: ['#ebf2f8'], // Base color for gradient
+        labels: ['Co-opetition and Networks', 'Disruptive Technologies', 'Threat of Substitutes', 'Future Competition', 'Buyer Power', 'Supplier Power', 'Industry Rivalry and Competition'],
+        legend: {
+            show: false,
+        },
+    };
 
-    render() {
-        return (
-            <div>
-                <div id="chart">
-                    <ReactApexChart
-                        options={this.state.options}
-                        series={this.state.series}
-                        type="radialBar" // Explicitly specify the type as 'radialBar' here as well
-                        height={390}
-                    />
+    return (
+        <div className="w-full bg-white rounded-3xl shadow">
+            <div className="place-content-center w-full justify-center flex flex-col bg-white p-6 scale-90 ">
+                <div className="flex w-[60%] text-center font-semibold text-lg justify-around">
+                    <h1 className="ml-24">Driving Force</h1>
+                    <h1 className="ml-24">Impact</h1>
                 </div>
-                <div id="html-dist"></div>
+                <div className="place-content-center w-full justify-center flex">
+                    <div style={{ position: 'relative', width: '800px', height: '600px' }}>
+                        <ReactApexChart options={options} series={series} type="radialBar" height={600} width={800} />
+                        <div
+                            style={{
+                                position: 'absolute',
+                                top: 40,
+                                left: 35,
+                                width: '100%',
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 10,
+                                alignItems: 'flex-start',
+                                pointerEvents: 'none',
+                            }}
+                        >
+                            {options.labels?.map((label, index) => (
+                                <div
+                                    key={index}
+                                    style={{
+                                        fontSize: '16px',
+                                        fontWeight: 'bold',
+                                        textAlign: 'right',
+                                        width: '45%',
+                                    }}
+                                >
+                                    {label}:
+                                </div>
+                            ))}
+                        </div>
+                        {/* <div className="h-1 w-[40%] absolute rotate-[-40deg] right-[13%] top-[28%] bg-[#0f0808]    "></div> */}
+                        <div className="h-1 w-[40%] absolute right-[10%] top-[50%] bg-[#fafafa]   "></div>
+                        <div className="h-1 w-[40%] absolute right-[10%] top-[50%] bg-[#fafafa]  transform rotate-45 origin-left   "></div>
+                        <div className="h-1 w-[40%] absolute right-[10%] top-[50%] bg-[#fafafa]  transform rotate-[-45deg] origin-left   "></div>
+                        {/* <div className="h-1 w-[40%] absolute transform rotate-45 right-[11%] top-[60%] bg-[#e32aff]    "></div> */}
+                    </div>
+                    <div className="flex flex-col justify-between w-[28%] gap-4 font-semibold">
+                        <p className="p-3 shadow-md rounded-md">
+                            <span className="font-bold">ZERO to LOW IMPACT:</span> Driving forces in this segment will have minimal to no effect on the overall strategy. It may indicate that the
+                            factor is not significant enough to warrant significant changes in the strategic approach.
+                        </p>
+                        <p className="p-3 shadow-md rounded-md">
+                            <span className="font-bold">LOW to MODERATE IMPACT: </span>Driving forces in this segment will influence strategy to some extent but does not necessitate drastic changes.
+                            It prompts the organization to make adjustments or minor adaptations to its strategic plans without fundamentally altering its direction or goals.
+                        </p>
+
+                        <p className="p-3 shadow-md rounded-md">
+                            <span className="font-bold">MODERATE TO HIGH IMPACT: </span>Driving forces in this segment will significantly affect the organization's strategy, requiring substantial
+                            adjustments or even a reevaluation of strategic priorities. The impact is substantial enough to demand attention and concerted efforts to address the challenges or
+                            opportunities it presents.
+                        </p>
+                        <p className="p-3 shadow-md rounded-md">
+                            <span className="font-bold">HIGH IMPACT:</span> Driving forces in the segment profoundly influence the organization's strategy, often necessitating a complete overhaul of
+                            existing plans or the adoption of entirely new approaches. The impact is so significant that it can potentially reshape the organization's trajectory and competitive
+                            position in the market.
+                        </p>
+                    </div>
+                    <div className="place-content-center flex flex-col w-16 items-center text-center absolute left-[34%] bottom-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="230" viewBox="0 0 20 400">
+                            <rect x="9" y="0" width="2" height="380" fill="#357EDD" />
+                            <polygon points="0,380 20,380 10,400" fill="#357EDD" />
+                        </svg>
+                        <h6 className="font-bold">High</h6>
+                    </div>
+                    <div className="place-content-center flex flex-col w-16 items-center text-center absolute left-[34%] ">
+                        <h6 className="font-bold">ZERO</h6>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="230" viewBox="0 0 20 400">
+                            <rect x="9" y="20" width="2" height="380" fill="#357EDD" />
+                            <polygon points="0,20 20,20 10,0" fill="#357EDD" />
+                        </svg>
+                    </div>
+                </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 const RevenueChart = () => {
     const isDark = useSelector((state: IRootState) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
@@ -202,7 +261,7 @@ const RevenueChart = () => {
     };
 
     return (
-        <div className="panel h-full mt-5" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="panel rounded-3xl h-full mt-5" style={{ position: 'relative', zIndex: 1 }}>
             <div className="flex items-center justify-between dark:text-white-light mb-5">
                 <h5 className="font-semibold text-lg">Level of Offering</h5>
             </div>
@@ -223,7 +282,7 @@ const RevenueChart = () => {
 const LevelTable = () => {
     return (
         <>
-            <div className="bg-white p-5 rounded-lg mt-5">
+            <div className="bg-white p-5 rounded-3xl">
                 <table className="w-full">
                     <thead className="bg-[#4361EE80]">
                         <tr className="bg-[#4361EE80]">
@@ -340,9 +399,12 @@ const LevelOfOffering = () => {
                     people through innovative strategies and actionable plans.
                 </p>
             </div>
+            <div className='flex flex-col gap-5'>
+
             <RevenueChart />
             <ApexChart />
             <LevelTable />
+            </div>
         </>
     );
 };

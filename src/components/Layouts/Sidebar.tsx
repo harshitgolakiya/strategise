@@ -775,7 +775,7 @@ const Sidebar = () => {
                                 <AnimateHeight duration={300} height={currentMenu === 'forms' ? 'auto' : 0}>
                                     <ul className="sub-menu text-gray-500">
                                         <li>
-                                            <NavLink to="/Industry-Analysis">{t('industry-analysis')}</NavLink>
+                                            <NavLink to="/Industry-Analysis">{t('Industry-Analysis')}</NavLink>
                                         </li>
                                         <li>
                                             <NavLink to="/CurrentCompetition">{t('Current Competition')}</NavLink>
@@ -800,6 +800,9 @@ const Sidebar = () => {
                                         </li>
                                         <li>
                                             <NavLink to="/IndustryTable">{t('Industry Analysis based on its mission')}</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/LevelOfOffering">{t('Level Of Offering')}</NavLink>
                                         </li>
                                     </ul>
                                 </AnimateHeight>
