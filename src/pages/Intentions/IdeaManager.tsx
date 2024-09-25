@@ -123,7 +123,7 @@ const DevelopSolutionModal: React.FC<DevelopSolutionModalProps> = ({ isOpen, onC
                                 name={label.split(':')[0].toLowerCase()}
                                 value={currentSolutionDetails[label.split(':')[0].toLowerCase()] || ''}
                                 onChange={handleChange}
-                                className="w-full p-2 border border-gray-300 rounded-lg resize-none"
+                                className="w-full p-2 border focus:border-[#605EFD] focus:outline-none border-gray-300 rounded-lg resize-none"
                                 rows={3}
                             ></textarea>
                         </div>
@@ -273,7 +273,7 @@ const App: React.FC = () => {
                         <div className="mb-4">
                             <label className="block text-sm font-medium mb-1">Issue / Unmet Requirement</label>
                             <textarea
-                                className="w-full p-2 border border-gray-300 rounded-lg resize-none"
+                                className="w-full p-2 border focus:border-[#605EFD] focus:outline-none border-gray-300 rounded-lg resize-none"
                                 placeholder="Whenever you or someone else encounters an issue or has an unmet requirement, enter it here"
                                 rows={3}
                                 value={idea.issue}
@@ -283,7 +283,7 @@ const App: React.FC = () => {
                         <div className="mb-4">
                             <label className="block text-sm font-medium mb-1">Existing Solution</label>
                             <textarea
-                                className="w-full p-2 border border-gray-300 rounded-lg resize-none"
+                                className="w-full p-2 border focus:border-[#605EFD] focus:outline-none border-gray-300 rounded-lg resize-none"
                                 placeholder="Provide details of an existing solution (if any) to this issue/unmet requirement. If no solution exists, simply write 'No current solution'."
                                 rows={3}
                                 value={idea.solution}
@@ -293,13 +293,14 @@ const App: React.FC = () => {
                         <div className="mb-4">
                             <label className="block text-sm font-medium mb-1">Proposed Solution</label>
                             <textarea
-                                className="w-full p-2 border border-gray-300 rounded-lg resize-none"
+                                className="w-full p-2 border focus:border-[#605EFD] focus:outline-none border-gray-300 rounded-lg resize-none"
                                 placeholder="Outline your proposed solution to this issue/unmet need."
                                 rows={3}
                                 value={idea.proposed}
                                 onChange={(e) => handleInputChange(index, 'proposed', e.target.value)}
                             ></textarea>
                         </div>
+
                         <div className="grid grid-cols-2 gap-4">
                             <button onClick={() => openModal(index, 'develop')} className="btn btn-outline-primary rounded-full">
                                 Develop Solution

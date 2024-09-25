@@ -31,6 +31,7 @@ import IconMenuUsers from '../Icon/Menu/IconMenuUsers';
 // import IconMenuPages from '../Icon/Menu/IconMenuPages';
 // import IconMenuAuthentication from '../Icon/Menu/IconMenuAuthentication';
 import IconMenuDocumentation from '../Icon/Menu/IconMenuDocumentation';
+import IconMenuForms from '../Icon/Menu/IconMenuForms';
 
 const Sidebar = () => {
     const [currentMenu, setCurrentMenu] = useState<string>('');
@@ -122,12 +123,10 @@ const Sidebar = () => {
                                     </ul>
                                 </AnimateHeight>
                             </li> */}
-
                             {/* <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('apps')}</span>
                             </h2> */}
-
                             {/* <li className="nav-item">
                                 <ul>
                                     <li className="nav-item">
@@ -219,12 +218,10 @@ const Sidebar = () => {
                                     </li>
                                 </ul>
                             </li> */}
-
                             {/* <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('user_interface')}</span>
                             </h2> */}
-
                             {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'component' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('component')}>
                                     <div className="flex items-center">
@@ -284,7 +281,6 @@ const Sidebar = () => {
                                     </ul>
                                 </AnimateHeight>
                             </li> */}
-
                             {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'element' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('element')}>
                                     <div className="flex items-center">
@@ -356,7 +352,6 @@ const Sidebar = () => {
                                     </ul>
                                 </AnimateHeight>
                             </li> */}
-
                             {/* <li className="menu nav-item">
                                 <NavLink to="/charts" className="group">
                                     <div className="flex items-center">
@@ -365,7 +360,6 @@ const Sidebar = () => {
                                     </div>
                                 </NavLink>
                             </li> */}
-
                             {/* <li className="menu nav-item">
                                 <NavLink to="/widgets" className="group">
                                     <div className="flex items-center">
@@ -374,7 +368,6 @@ const Sidebar = () => {
                                     </div>
                                 </NavLink>
                             </li> */}
-
                             {/* <li className="menu nav-item">
                                 <NavLink to="/font-icons" className="group">
                                     <div className="flex items-center">
@@ -383,7 +376,6 @@ const Sidebar = () => {
                                     </div>
                                 </NavLink>
                             </li> */}
-
                             {/* <li className="menu nav-item">
                                 <NavLink to="/dragndrop" className="group">
                                     <div className="flex items-center">
@@ -392,12 +384,10 @@ const Sidebar = () => {
                                     </div>
                                 </NavLink>
                             </li> */}
-
                             {/* <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('tables_and_forms')}</span>
                             </h2> */}
-
                             {/* <li className="menu nav-item">
                                 <NavLink to="/tables" className="group">
                                     <div className="flex items-center">
@@ -406,7 +396,6 @@ const Sidebar = () => {
                                     </div>
                                 </NavLink>
                             </li> */}
-
                             {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'datalabel' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('datalabel')}>
                                     <div className="flex items-center">
@@ -457,7 +446,6 @@ const Sidebar = () => {
                                     </ul>
                                 </AnimateHeight>
                             </li> */}
-
                             {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'forms' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('forms')}>
                                     <div className="flex items-center">
@@ -520,12 +508,10 @@ const Sidebar = () => {
                                     </ul>
                                 </AnimateHeight>
                             </li> */}
-
                             <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('user and company')}</span>
                             </h2>
-
                             <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'users' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('users')}>
                                     <div className="flex items-center">
@@ -549,7 +535,6 @@ const Sidebar = () => {
                                     </ul>
                                 </AnimateHeight>
                             </li>
-
                             <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'users' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('company')}>
                                     <div className="flex items-center">
@@ -710,12 +695,10 @@ const Sidebar = () => {
                                     </ul>
                                 </AnimateHeight>
                             </li> */}
-
                             <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('pages')}</span>
                             </h2>
-
                             <li className="menu nav-item">
                                 <NavLink to="/pages/faq" className="nav-link group">
                                     <div className="flex items-center">
@@ -763,6 +746,63 @@ const Sidebar = () => {
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Company DNA')}</span>
                                     </div>
                                 </NavLink>
+                            </li>
+                            {/* path: '/industry-analysis', // */}
+                            <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
+                                <IconMinus className="w-4 h-5 flex-none hidden" />
+                                <span className="capitlise">{t('industry-analysis')}</span>
+                            </h2>
+                            {/* <li className="menu nav-item">
+                                <NavLink to="/Industry-Analysis" className="nav-link group">
+                                    <div className="flex items-center">
+                                        <IconMenuDocumentation className="group-hover:!text-primary shrink-0" />
+                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark capitalize">{t('industry-analysis')}</span>
+                                    </div>
+                                </NavLink>
+                            </li> */}
+                            <li className="menu nav-item">
+                                <button type="button" className={`${currentMenu === 'forms' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('forms')}>
+                                    <div className="flex items-center">
+                                        <IconMenuForms className="group-hover:!text-primary shrink-0" />
+                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Industry-Analysis')}</span>
+                                    </div>
+
+                                    <div className={currentMenu !== 'forms' ? 'rtl:rotate-90 -rotate-90' : ''}>
+                                        <IconCaretDown />
+                                    </div>
+                                </button>
+
+                                <AnimateHeight duration={300} height={currentMenu === 'forms' ? 'auto' : 0}>
+                                    <ul className="sub-menu text-gray-500">
+                                        <li>
+                                            <NavLink to="/Industry-Analysis">{t('industry-analysis')}</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/CurrentCompetition">{t('Current Competition')}</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/BuyerPower">{t('Buyer Power')}</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/SupplierPower">{t('Supplier Power')}</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/PotentialEntrants">{t('Potential Entrants')}</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/ThreatofSubstitutes">{t('Threat of Substitutes ')}</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/DisruptiveTechnologies">{t('Disruptive Technologies')}</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/Co-opetition">{t('Co-opetition and Networks')}</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/IndustryTable">{t('Industry Analysis based on its mission')}</NavLink>
+                                        </li>
+                                    </ul>
+                                </AnimateHeight>
                             </li>
                         </ul>
                     </PerfectScrollbar>

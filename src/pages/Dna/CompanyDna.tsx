@@ -89,6 +89,11 @@ export default function CompanyInfoLayout() {
             setExpandedCardId(null);
         }
     };
+    const [isVisble, setIsVisible] = useState(true)
+    
+    const handleClose = () => {
+        setIsVisible(false)
+    }
 
     const cardsData: CardsData[] = [
         {
@@ -247,29 +252,33 @@ Empower with Integrity
 Strive for excellence`,
             expandedContent: (
                 <>
-                    <div className="mb-4 p-4 bg-blue-100 rounded ">
-                        <div className="flex justify-between">
-                            <p className="text-sm text-blue-600">
-                                <span className="font-semibold">Tips:</span> No more than four, make them actionable and keep them short
-                            </p>
-                            <button className="">
-                                <IconX />
-                            </button>
+                    {isVisble && (
+                        <div className="mb-4 p-4 bg-blue-100 rounded ">
+                            <div className="flex justify-between">
+                                <p className="text-sm text-blue-600">
+                                    <span className="font-semibold">Tips:</span> No more than four, make them actionable and keep them short
+                                </p>
+                                <button className="" onClick={handleClose}>
+                                    <IconX />
+                                </button>
+                            </div>
+                            <div className="grid grid-cols-12 text-blue-600">
+                                <p className="font-semibold col-span-3">Test your values:</p>
+                                <ul className="col-span-9">
+                                    <li> Can people translate values into actions?</li>
+                                    <li>Do they provide options in how employees use their time?</li>
+                                    <li>Can they be easily memorized?</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div className="grid grid-cols-12 text-blue-600">
-                            <p className="font-semibold col-span-3">Test your values:</p>
-                            <ul className="col-span-9">
-                                <li> Can people translate values into actions?</li>
-                                <li>Do they provide options in how employees use their time?</li>
-                                <li>Can they be easily memorized?</li>
-                            </ul>
-                        </div>
-                        <div className=""></div>
-                    </div>
+                    )}
                     <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-5">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
-                                <textarea className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Be customer-centric"></textarea>
+                                <textarea
+                                    className="resize-none scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200 text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    placeholder="Be customer-centric"
+                                ></textarea>
                             </div>
                         </div>
                         <div className="col-span-7">
@@ -282,13 +291,16 @@ Strive for excellence`,
                         </div>
                         <div className="col-span-5">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
-                                <textarea className="resize-none text-[14px] text-black placeholder-[#888EA8]] px-3 py-2 w-full h-24 outline-none rounded" placeholder="Create to Innovate"></textarea>
+                                <textarea
+                                    className="scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200 resize-none text-[14px] text-black placeholder-[#888EA8]] px-3 py-2 w-full h-24 outline-none rounded"
+                                    placeholder="Create to Innovate"
+                                ></textarea>
                             </div>
                         </div>
                         <div className="col-span-7">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
                                 <textarea
-                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    className="scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200 resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
                                     placeholder="We continuously seek and implement creative solutions and forward-thinking strategies to stay ahead in a dynamic business landscape."
                                 ></textarea>
                             </div>
@@ -296,7 +308,7 @@ Strive for excellence`,
                         <div className="col-span-5">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
                                 <textarea
-                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    className="scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200 resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
                                     placeholder="Empower with integrity"
                                 ></textarea>
                             </div>
@@ -304,7 +316,7 @@ Strive for excellence`,
                         <div className="col-span-7">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
                                 <textarea
-                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200"
                                     placeholder="We enable and support our team and clients to take initiative, make informed decisions, and achieve their full potential."
                                 ></textarea>
                             </div>
@@ -312,7 +324,7 @@ Strive for excellence`,
                         <div className="col-span-5">
                             <div className="border border-white-light focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
                                 <textarea
-                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded"
+                                    className="resize-none text-[14px] text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200"
                                     placeholder="Strive for Excellence"
                                 ></textarea>
                             </div>
@@ -320,7 +332,7 @@ Strive for excellence`,
                         <div className="col-span-7">
                             <div className="border border-white-light  focus-within:border-[#605EFD] focus-within:border-opacity-100 dark:border-[#1b2e4b] transition-all duration-300 rounded">
                                 <textarea
-                                    className="resize-none text-[14px] scrollbar-hide  text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded focus:border-black"
+                                    className="resize-none text-[14px] scrollbar-thin scrollbar-thumb-[#605EFD] scrollbar-track-gray-200  text-black placeholder-[#888EA8] px-3 py-2 w-full h-24 outline-none rounded focus:border-black "
                                     placeholder="We commit to the highest standards of quality and performance in everything we do, striving for exceptional outcomes and continuous improvement."
                                 ></textarea>
                             </div>
@@ -488,7 +500,7 @@ Strive for excellence`,
                 </p>
             </div>
             <div className="container mx-auto">
-                <div className="grid grid-cols-12 gap-6">
+                <div className="sm:grid sm:grid-cols-12 sm:gap-6 flex flex-col gap-6">
                     {cardsData.map((card) => (
                         <InfoCard
                             key={card.id}

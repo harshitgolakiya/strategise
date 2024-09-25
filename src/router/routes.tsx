@@ -106,13 +106,24 @@ const Intentions = lazy(() => import('../pages/Intentions/Index'));
 const Description = lazy(() => import('../pages/Intentions/Description'));
 const DnaComponent = lazy(() => import('../pages/Dna/CompanyDna'));
 const IdeaManager = lazy(() => import('../pages/Intentions/IdeaManager2'));
-// const AdminLogin = lazy(() => import('../admin/pages/Authentication/LoginCover'));
+const IndustryAnalysis = lazy(() => import('../pages/Industry-analysis/IndustryAnalysis'));
+const CurrentCompetition = lazy(() => import('../pages/Industry-analysis/CurrentCompetition'));
+const BuyerPower = lazy(() => import('../pages/Industry-analysis/BuyerPower'));
+const SupplierPower = lazy(() => import('../pages/Industry-analysis/SupplierPower'));
+const PotentialEntrants = lazy(() => import('../pages/Industry-analysis/PotentialEntrants'));
+const ThreatofSubstitutes = lazy(() => import('../pages/Industry-analysis/ThreatofSubstitutes'));
+const DisruptiveTechnologies = lazy(() => import('../pages/Industry-analysis/DisruptiveTechnologies'));
+const CoOpetition = lazy(() => import('../pages/Industry-analysis/CoOpetition'));
+const IndustryTable = lazy(() => import('../pages/Industry-analysis/IndustryTable'));
+const LevelOfOffering = lazy(() => import('../pages/Industry-analysis/LevelOfOffering'));
+const PestelAnalysis = lazy(()=> import('../pages/Pestel/PestelAnalysis'));
+const AdminLogin = lazy(() => import('../admin/pages/Authentication/LoginCover'));
+
 
 const routes = [
     {
         path: '/ideamanager2',
         element: <IdeaManager />,
-
     },
     // dashboard
     {
@@ -561,6 +572,35 @@ const routes = [
         path: '/Company-DNA',
         element: <DnaComponent />,
     },
+    //Industry Analysis
+    {
+        path: '/Industry-Analysis',
+        element: <IndustryAnalysis />,
+    },
+    {
+        path: '/CurrentCompetition',
+        element: <CurrentCompetition />,
+    },
+    {
+        path: '/BuyerPower',
+        element: <BuyerPower />,
+    },
+    {
+        path: '/SupplierPower',
+        element: <SupplierPower />,
+    },
+    {
+        path: '/PotentialEntrants',
+        element: <PotentialEntrants />,
+    },
+    {
+        path: '/ThreatofSubstitutes',
+        element: <ThreatofSubstitutes />,
+    },
+    {
+        path: '/DisruptiveTechnologies',
+        element: <DisruptiveTechnologies />,
+    },
     {
         path: '/forms/clipboard',
         element: <Clipboard />,
@@ -574,6 +614,22 @@ const routes = [
         path: '*',
         element: <Error />,
         layout: 'blank',
+    },
+    {
+        path: '/Co-opetition',
+        element: <CoOpetition />,
+    },
+    {
+        path: '/IndustryTable',
+        element: <IndustryTable />,
+    },
+    {
+        path: '/LevelOfOffering',
+        element: <LevelOfOffering />,
+    },
+    {
+        path: '/PestelAnalysis',
+        element: <PestelAnalysis />,
     },
 
     // {

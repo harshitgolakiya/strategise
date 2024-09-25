@@ -137,11 +137,7 @@ const AccountSetting = () => {
     return (
         <div>
             <ul className="flex space-x-2 rtl:space-x-reverse">
-                {/* <li>
-                    <Link to="#" className="text-primary hover:underline">
-                        Users
-                    </Link>
-                </li> */}
+              
                 <li className=" ltr:before:mr-2 rtl:before:ml-2">
                     <span>Company Information</span>
                 </li>
@@ -170,15 +166,7 @@ const AccountSetting = () => {
                                 Payment Details
                             </button>
                         </li>
-                        {/* <li className="inline-block">
-                            <button
-                                onClick={() => toggleTabs('preferences')}
-                                className={`flex gap-2 p-4 border-b border-transparent hover:border-primary hover:text-primary ${tabs === 'preferences' ? '!border-primary text-primary' : ''}`}
-                            >
-                                <IconUser className="w-5 h-5" />
-                                Preferences
-                            </button>
-                        </li> */}
+                
                         <li className="inline-block">
                             <button
                                 onClick={() => toggleTabs('danger-zone')}
@@ -188,14 +176,6 @@ const AccountSetting = () => {
                                 Manage Account
                             </button>
                         </li>
-                        {/* {tabs === 'home' && (
-                            <li className="ml-auto">
-                                <button onClick={() => toggleTabs('danger-zone')} className={`btn btn-primary flex gap-2 p-2 mt-2 `}>
-                                    <IconCompany />
-                                    Add Company
-                                </button>
-                            </li>
-                        )} */}
                     </ul>
                 </div>
                 {tabs === 'home' ? (

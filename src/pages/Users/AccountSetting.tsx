@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { setPageTitle } from '../../store/themeConfigSlice';
 import { useDispatch } from 'react-redux';
 import IconHome from '../../components/Icon/IconHome';
@@ -19,6 +19,23 @@ const AccountSetting = () => {
     const [tabs, setTabs] = useState<string>('home');
     const toggleTabs = (name: string) => {
         setTabs(name);
+    };
+    const [image, setImage] = useState<string | null>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleImageClick = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setImage(e.target?.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     return (
@@ -83,7 +100,13 @@ const AccountSetting = () => {
                             <h6 className="text-lg font-bold mb-5">General Information</h6>
                             <div className="flex flex-col sm:flex-row">
                                 <div className="ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">
-                                    <img src="/assets//images/profile-34.jpeg" alt="img" className="w-20 h-20 md:w-32 md:h-32 rounded-full object-cover mx-auto" />
+                                    <input type="file" className="hidden" id="file" ref={fileInputRef} onChange={handleFileChange} accept="image/*" />
+                                    <img
+                                        src={image || '/placeholder.svg?height=128&width=128'}
+                                        alt="Company Logo"
+                                        className="w-20 h-20 md:w-32 md:h-32 rounded-full object-cover mx-auto cursor-pointer"
+                                        onClick={handleImageClick}
+                                    />
                                 </div>
                                 <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5">
                                     <div>
