@@ -127,13 +127,17 @@ const routes = [
     },
     // dashboard
     {
-        path: '/',
+        path: '/login',
         element: <LoginCover />,
         layout: 'blank',
     },
-
     {
-        path: '/index',
+        path:'/signup',
+        element: <RegisterCover />,
+        layout: 'blank',
+    },
+    {
+        path: '/',
         element: <Index />,
     },
     // analytics page
