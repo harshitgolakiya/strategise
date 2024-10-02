@@ -33,14 +33,14 @@ export async function loginUser(email: string, password: string): Promise<string
             throw new Error(LoginErrors.Failed);
         }
     } else {
-        throw new Error(LoginErrors.Failed);
+        throw new Error(LoginErrors.Network);
     }
 }
 
 
-export async function validateToken(token: string) {
+export async function validateToken(email: string, token: string) {
     const { apiurl, baseId, pat, authTableId } = getAirTableSecrets();
-    const encodedFormula = encodeURI(`{password_hash}="${token}"`)
+    const encodedFormula = encodeURI(`IF(AND({password_hash}="${token}",{email}="${email}"),1,0)`)
     let res: Response | undefined;
     try {
         res = await fetch(`${apiurl}/${baseId}/${authTableId}?filterByFormula=${encodedFormula}`, {
@@ -64,6 +64,6 @@ export async function validateToken(token: string) {
             throw new Error(LoginErrors.Failed);
         }
     } else {
-        throw new Error(LoginErrors.Failed);
+        throw new Error(LoginErrors.Network);
     }
 }

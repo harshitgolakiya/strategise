@@ -62,6 +62,7 @@ const LoginCover = () => {
                         timer: 2000
                     })
                     localStorage.setItem('token', res);
+                    localStorage.setItem('email', email);
                     setTimeout(() => {
                         navigate('/');
                     }, 2100)
