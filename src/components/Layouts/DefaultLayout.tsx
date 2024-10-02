@@ -35,10 +35,10 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
         const screenLoader = document.getElementsByClassName('screen_loader');
         if (screenLoader?.length) {
             screenLoader[0].classList.add('animate__fadeOut');
-            setTimeout(() => {
-                setShowLoader(false);
-            }, 200);
         }
+        setTimeout(() => {
+            setShowLoader(false);
+        }, 200);
 
         return () => {
             window.removeEventListener('onscroll', onScrollHandler);

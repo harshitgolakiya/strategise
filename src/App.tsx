@@ -4,11 +4,11 @@ import { IRootState } from './store';
 import { toggleRTL, toggleTheme, toggleLocale, toggleMenu, toggleLayout, toggleAnimation, toggleNavbar, toggleSemidark } from './store/themeConfigSlice';
 import store from './store';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { validateToken } from '@/utils/air_utils/LoginUser'
+import { loginUser, validateToken } from '@/utils/air_utils/LoginUser'
 function App({ children }: PropsWithChildren) {
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
     const dispatch = useDispatch();
-    const [tokenValidationLoading, setTokenValidationLoading] = useState(false);
+    const [tokenValidationLoading, setTokenValidationLoading] = useState(true);
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -25,12 +25,13 @@ function App({ children }: PropsWithChildren) {
 
     useEffect(() => {
         const token = localStorage.getItem("token")
-        console.log(token);
-        if (token) {
-            validateToken(token).then(() => {
+        const email = localStorage.getItem("email")
+        if (token && email) {
+            validateToken(email, token).then(() => {
                 setTokenValidationLoading(false);
                 navigate('/')
-            }).catch(() => {
+            }).catch((e) => {
+                console.log(e)
                 setTokenValidationLoading(false);
                 navigate('/login')
             });
@@ -40,7 +41,8 @@ function App({ children }: PropsWithChildren) {
     }, []);
     useEffect(() => {
         const token = localStorage.getItem("token")
-        if (!token && location.pathname !== "/login" && location.pathname !== "/signup") {
+        const email = localStorage.getItem("email")
+        if ((!token || !email) && location.pathname !== "/login" && location.pathname !== "/signup") {
             navigate('/login')
         }
         if (location.pathname === "/logout") {

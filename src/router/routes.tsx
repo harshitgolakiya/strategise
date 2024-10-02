@@ -124,6 +124,7 @@ const SwotStrength = lazy(()=> import('../pages/Swot/SwotStrength'));
 const SwotDetails = lazy(() => import('../pages/Swot/SwotDetails'));
 const AdminLogin = lazy(() => import('../admin/pages/Authentication/LoginCover'));
 
+const Logout = lazy(() => import('../pages/Authentication/Logout'));
 
 const routes = [
     {
@@ -137,8 +138,13 @@ const routes = [
         layout: 'blank',
     },
     {
-        path:'/signup',
+        path: '/signup',
         element: <RegisterCover />,
+        layout: 'blank',
+    },
+    {
+        path: '/logout',
+        element: <Logout />,
         layout: 'blank',
     },
     {
