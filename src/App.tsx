@@ -8,7 +8,7 @@ import { validateToken } from '@/utils/air_utils/LoginUser'
 function App({ children }: PropsWithChildren) {
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
     const dispatch = useDispatch();
-    const [tokenValidationLoading, setTokenValidationLoading] = useState(false);
+    const [tokenValidationLoading, setTokenValidationLoading] = useState(true);
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -25,7 +25,6 @@ function App({ children }: PropsWithChildren) {
 
     useEffect(() => {
         const token = localStorage.getItem("token")
-        console.log(token);
         if (token) {
             validateToken(token).then(() => {
                 setTokenValidationLoading(false);

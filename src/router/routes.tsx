@@ -116,9 +116,10 @@ const DisruptiveTechnologies = lazy(() => import('../pages/Industry-analysis/Dis
 const CoOpetition = lazy(() => import('../pages/Industry-analysis/CoOpetition'));
 const IndustryTable = lazy(() => import('../pages/Industry-analysis/IndustryTable'));
 const LevelOfOffering = lazy(() => import('../pages/Industry-analysis/LevelOfOffering'));
-const PestelAnalysis = lazy(()=> import('../pages/Pestel/PestelAnalysis'));
+const PestelAnalysis = lazy(() => import('../pages/Pestel/PestelAnalysis'));
 const AdminLogin = lazy(() => import('../admin/pages/Authentication/LoginCover'));
 
+const Logout = lazy(() => import('../pages/Authentication/Logout'));
 
 const routes = [
     {
@@ -132,8 +133,13 @@ const routes = [
         layout: 'blank',
     },
     {
-        path:'/signup',
+        path: '/signup',
         element: <RegisterCover />,
+        layout: 'blank',
+    },
+    {
+        path: '/logout',
+        element: <Logout />,
         layout: 'blank',
     },
     {
