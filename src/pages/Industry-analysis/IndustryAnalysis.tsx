@@ -10,6 +10,7 @@ import Edit from '/assets/images/Edit.svg';
 interface AnalysisItem {
     id: string;
     text: string;
+    heading: string;
     isEditing: boolean;
     columnId: string;
 }
@@ -59,7 +60,7 @@ const Column: React.FC<ColumnProps> = ({ column, items, onEdit, onSave, onDelete
     return (
         <div className={`flex-1 min-w-[200px] p-4 rounded-3xl ${column.backgroundColor}`}>
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-base  font-semibold">{column.title}</h2>
+                <h2 className="text-base  font-bold">{column.title}</h2>
                 <div className="flex gap-1 justify-between">
                     {isFirstColumn && (
                         <button>
@@ -77,6 +78,7 @@ const Column: React.FC<ColumnProps> = ({ column, items, onEdit, onSave, onDelete
             <ReactSortable list={items} setList={setList} animation={200} group="shared">
                 {items.map((item) => (
                     <div key={item.id} className="mb-4 bg-[#fafafa] p-3 rounded-md shadow h-40 overflow-hidden flex flex-col justify-between scrollbar-hide">
+                        <h1 className="px-2 font-bold">{item.heading}</h1>
                         {item.isEditing ? (
                             <textarea
                                 ref={setTextareaRef(item.id)}
@@ -103,30 +105,42 @@ const Column: React.FC<ColumnProps> = ({ column, items, onEdit, onSave, onDelete
 
 export default function IndustryAnalysis() {
     const [items, setItems] = useState<AnalysisItem[]>([
-        { id: '1', text: 'Simplify processes and avoid jargon to make consulting accessible and understandable.', isEditing: false, columnId: 'addChoices' },
-        { id: '2', text: 'Ensure transparent pricing with no unexpected charges.', isEditing: false, columnId: 'addChoices' },
-        { id: '3', text: 'Streamline project timelines to deliver faster results without compromising quality.', isEditing: false, columnId: 'addChoices' },
-        { id: '4', text: 'Eliminate generic solutions and focus on tailored strategies for each client.', isEditing: false, columnId: 'addChoices' },
-        { id: '5', text: 'Remove inflexible consulting frameworks to adapt to client needs dynamically.', isEditing: false, columnId: 'addChoices' },
-        { id: '6', text: 'Reduce excessive dependence on data analysis, balancing it with intuitive and creative problem-solving.', isEditing: false, columnId: 'addChoices' },
-        { id: '7', text: 'Lower the cost of services by optimizing internal processes and leveraging technology.', isEditing: false, columnId: 'addChoices' },
-        { id: '8', text: 'Reduce overly formal communication and foster a more approachable, collaborative atmosphere.', isEditing: false, columnId: 'addChoices' },
-        { id: '9', text: 'Unnecessary complexity in consulting processes and deliverables.', isEditing: false, columnId: 'eliminate' },
-        { id: '10', text: 'Hidden fees and unclear pricing structures.', isEditing: false, columnId: 'eliminate' },
-        { id: '11', text: 'Lengthy, drawn-out project timelines.', isEditing: false, columnId: 'eliminate' },
-        { id: '12', text: "One-size-fits-all solutions that don't address specific client needs.", isEditing: false, columnId: 'eliminate' },
-        { id: '13', text: 'Overreliance on industry jargon and complex terminology.', isEditing: false, columnId: 'reduce' },
-        { id: '14', text: 'Excessive focus on theoretical frameworks without practical application.', isEditing: false, columnId: 'reduce' },
-        { id: '15', text: 'Time spent on non-essential administrative tasks.', isEditing: false, columnId: 'reduce' },
-        { id: '16', text: 'Dependency on outdated methodologies and tools.', isEditing: false, columnId: 'reduce' },
-        { id: '17', text: 'Emphasis on clear, concise communication with clients.', isEditing: false, columnId: 'raise' },
-        { id: '18', text: 'Focus on delivering tangible, measurable results.', isEditing: false, columnId: 'raise' },
-        { id: '19', text: 'Investment in cutting-edge technologies and data analytics tools.', isEditing: false, columnId: 'raise' },
-        { id: '20', text: 'Commitment to continuous learning and skill development for consultants.', isEditing: false, columnId: 'raise' },
-        { id: '21', text: 'Innovative, client-centric consulting models.', isEditing: false, columnId: 'create' },
-        { id: '22', text: 'Digital platforms for real-time collaboration and project tracking.', isEditing: false, columnId: 'create' },
-        { id: '23', text: 'Customizable solution frameworks that adapt to various industries.', isEditing: false, columnId: 'create' },
-        { id: '24', text: 'Mentorship programs to nurture next-generation business leaders.', isEditing: false, columnId: 'create' },
+        { id: '1', text: 'Simplify processes and avoid jargon to make consulting accessible and understandable.', isEditing: false, columnId: 'addChoices', heading: 'Unnecessary Complexity' },
+        { id: '2', text: 'Ensure transparent pricing with no unexpected charges.', isEditing: false, columnId: 'addChoices', heading: 'Hidden Fees' },
+        { id: '3', text: 'Streamline project timelines to deliver faster results without compromising quality.', isEditing: false, columnId: 'addChoices', heading: 'Lengthy Timelines' },
+        { id: '4', text: 'Eliminate generic solutions and focus on tailored strategies for each client.', isEditing: false, columnId: 'addChoices', heading: 'One-Size-Fits-All Solutions' },
+        { id: '5', text: 'Remove inflexible consulting frameworks to adapt to client needs dynamically.', isEditing: false, columnId: 'addChoices', heading: 'Rigid Structures' },
+        {
+            id: '6',
+            text: 'Reduce excessive dependence on data analysis, balancing it with intuitive and creative problem-solving.',
+            isEditing: false,
+            columnId: 'addChoices',
+            heading: 'Over-Reliance on Data',
+        },
+        { id: '7', text: 'Lower the cost of services by optimizing internal processes and leveraging technology.', isEditing: false, columnId: 'addChoices', heading: 'High Costs' },
+        {
+            id: '8',
+            text: 'Reduce overly formal communication and foster a more approachable, collaborative atmosphere.',
+            isEditing: false,
+            columnId: 'addChoices',
+            heading: 'Formality in Interactions',
+        },
+        { id: '9', text: 'Unnecessary complexity in consulting processes and deliverables.', isEditing: false, columnId: 'eliminate', heading: 'Unnecessary Complexity' },
+        { id: '10', text: 'Hidden fees and unclear pricing structures.', isEditing: false, columnId: 'eliminate', heading: 'Hidden Fees' },
+        { id: '11', text: 'Lengthy, drawn-out project timelines.', isEditing: false, columnId: 'eliminate', heading: 'Lengthy Timelines' },
+        { id: '12', text: "One-size-fits-all solutions that don't address specific client needs.", isEditing: false, columnId: 'eliminate', heading: 'One-Size-Fits-All Solutions' },
+        { id: '13', text: 'Overreliance on industry jargon and complex terminology.', isEditing: false, columnId: 'reduce', heading: 'Unnecessary Complexity' },
+        { id: '14', text: 'Excessive focus on theoretical frameworks without practical application.', isEditing: false, columnId: 'reduce', heading: 'Rigid Structures' },
+        { id: '15', text: 'Time spent on non-essential administrative tasks.', isEditing: false, columnId: 'reduce', heading: 'Hidden Fees' },
+        { id: '16', text: 'Dependency on outdated methodologies and tools.', isEditing: false, columnId: 'reduce', heading: 'Over-Reliance on Data' },
+        { id: '17', text: 'Emphasis on clear, concise communication with clients.', isEditing: false, columnId: 'raise', heading: 'Formality in Interactions' },
+        { id: '18', text: 'Focus on delivering tangible, measurable results.', isEditing: false, columnId: 'raise', heading: 'High Costs' },
+        { id: '19', text: 'Investment in cutting-edge technologies and data analytics tools.', isEditing: false, columnId: 'raise', heading: 'Over-Reliance on Data' },
+        { id: '20', text: 'Commitment to continuous learning and skill development for consultants.', isEditing: false, columnId: 'raise', heading: 'One-Size-Fits-All Solutions' },
+        { id: '21', text: 'Innovative, client-centric consulting models.', isEditing: false, columnId: 'create', heading: 'Unnecessary Complexity' },
+        { id: '22', text: 'Digital platforms for real-time collaboration and project tracking.', isEditing: false, columnId: 'create', heading: 'Rigid Structures' },
+        { id: '23', text: 'Customizable solution frameworks that adapt to various industries.', isEditing: false, columnId: 'create', heading: 'One-Size-Fits-All Solutions' },
+        { id: '24', text: 'Mentorship programs to nurture next-generation business leaders.', isEditing: false, columnId: 'create', heading: 'Formality in Interactions' },
     ]);
 
     const columns: Column[] = [
@@ -153,6 +167,7 @@ export default function IndustryAnalysis() {
         const newItem: AnalysisItem = {
             id: Date.now().toString(),
             text: 'New item',
+            heading: 'New heading',
             isEditing: false,
             columnId: columnId,
         };
@@ -168,7 +183,6 @@ export default function IndustryAnalysis() {
 
     return (
         <div>
-            
             <div className="mb-5">
                 <h1 className="font-bold text-lg mb-5">3D ACTIO Industry Analysis based on its mission to</h1>
                 <p className="text-gray-500">
