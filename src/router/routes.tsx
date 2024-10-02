@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import Setting from '../components/Layouts/Setting';
 import path from 'path';
+import { el } from '@fullcalendar/core/internal-common';
 const Index = lazy(() => import('../pages/Index'));
 const Analytics = lazy(() => import('../pages/Analytics'));
 const Finance = lazy(() => import('../pages/Finance'));
@@ -117,6 +118,10 @@ const CoOpetition = lazy(() => import('../pages/Industry-analysis/CoOpetition'))
 const IndustryTable = lazy(() => import('../pages/Industry-analysis/IndustryTable'));
 const LevelOfOffering = lazy(() => import('../pages/Industry-analysis/LevelOfOffering'));
 const PestelAnalysis = lazy(()=> import('../pages/Pestel/PestelAnalysis'));
+const PestelDashboard = lazy(() => import('../pages/Pestel/PestelDashboard'));
+const SwotAnalysis = lazy(() => import('../pages/Swot/SwotAnalsyis'));
+const SwotStrength = lazy(()=> import('../pages/Swot/SwotStrength'));
+const SwotDetails = lazy(() => import('../pages/Swot/SwotDetails'));
 const AdminLogin = lazy(() => import('../admin/pages/Authentication/LoginCover'));
 
 
@@ -630,6 +635,22 @@ const routes = [
     {
         path: '/PestelAnalysis',
         element: <PestelAnalysis />,
+    },
+    {
+        path: '/PestelDashboard',
+        element: <PestelDashboard />,
+    },
+    {
+        path: '/SwotAnalysis',
+        element: <SwotAnalysis />,
+    },
+    {
+        path: '/SwotStrength',
+        element: <SwotStrength />,
+    },
+    {
+        path: '/SwotDetails',
+        element: <SwotDetails />,
     },
 
     // {
