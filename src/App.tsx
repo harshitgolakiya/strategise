@@ -1,12 +1,16 @@
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from './store';
 import { toggleRTL, toggleTheme, toggleLocale, toggleMenu, toggleLayout, toggleAnimation, toggleNavbar, toggleSemidark } from './store/themeConfigSlice';
 import store from './store';
-
+import { useLocation, useNavigate } from 'react-router-dom';
+import { validateToken } from '@/utils/air_utils/LoginUser'
 function App({ children }: PropsWithChildren) {
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
     const dispatch = useDispatch();
+    const [tokenValidationLoading, setTokenValidationLoading] = useState(false);
+    const navigate = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
         dispatch(toggleTheme(localStorage.getItem('theme') || themeConfig.theme));
@@ -19,11 +23,40 @@ function App({ children }: PropsWithChildren) {
         dispatch(toggleSemidark(localStorage.getItem('semidark') || themeConfig.semidark));
     }, [dispatch, themeConfig.theme, themeConfig.menu, themeConfig.layout, themeConfig.rtlClass, themeConfig.animation, themeConfig.navbar, themeConfig.locale, themeConfig.semidark]);
 
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        console.log(token);
+        if (token) {
+            validateToken(token).then(() => {
+                setTokenValidationLoading(false);
+                navigate('/')
+            }).catch(() => {
+                setTokenValidationLoading(false);
+                navigate('/login')
+            });
+        } else {
+            setTokenValidationLoading(false);
+        }
+    }, []);
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (!token && location.pathname !== "/login" && location.pathname !== "/signup") {
+            navigate('/login')
+        }
+        if (location.pathname === "/logout") {
+            setTokenValidationLoading(true);
+            localStorage.removeItem("token");
+            location.pathname = "/login"
+            return
+        }
+    }, [location])
+    if (tokenValidationLoading) {
+        return <div>Loading...</div>;
+    }
     return (
         <div
-            className={`${(store.getState().themeConfig.sidebar && 'toggle-sidebar') || ''} ${themeConfig.menu} ${themeConfig.layout} ${
-                themeConfig.rtlClass
-            } main-section antialiased relative font-nunito text-sm font-normal`}
+            className={`${(store.getState().themeConfig.sidebar && 'toggle-sidebar') || ''} ${themeConfig.menu} ${themeConfig.layout} ${themeConfig.rtlClass
+                } main-section antialiased relative font-nunito text-sm font-normal`}
         >
             {children}
         </div>

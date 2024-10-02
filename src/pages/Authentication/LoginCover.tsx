@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { setPageTitle, toggleRTL } from '../../store/themeConfigSlice';
@@ -12,6 +12,8 @@ import IconInstagram from '../../components/Icon/IconInstagram';
 import IconFacebookCircle from '../../components/Icon/IconFacebookCircle';
 import IconTwitter from '../../components/Icon/IconTwitter';
 import IconGoogle from '../../components/Icon/IconGoogle';
+import { toast } from '@/utils/ui/toast';
+import { loginUser } from '@/utils/air_utils/LoginUser';
 
 const LoginCover = () => {
     const dispatch = useDispatch();
@@ -30,11 +32,50 @@ const LoginCover = () => {
         }
     };
     const [flag, setFlag] = useState(themeConfig.locale);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const isFormValid = useMemo(() => {
+        let validity = {
+            status: true,
+            message: ''
+        }
+        if (email === '' || password === '') {
+            validity.status = false;
+            validity.message = 'All fields are required';
+        }
+        //other rules
+        return validity;
+    }, [email, password]);
+
+    const [loading, setLoading] = useState(false);
 
     const submitForm = () => {
-        navigate('/index');
-    };
 
+        if (isFormValid.status) {
+            setLoading(true);
+            loginUser(email, password).then((res) => {
+                setLoading(false);
+                if (res) {
+                    toast.fire({
+                        icon: 'success',
+                        title: 'Login Successful',
+                        timer: 2000
+                    })
+                    localStorage.setItem('token', res);
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 2100)
+                }
+            }).catch((err) => {
+                setLoading(false);
+                toast.fire({
+                    icon: 'error',
+                    title: err.message,
+                    timer: 2000,
+                })
+            })
+        }
+    };
     return (
         <div>
             <div className="absolute inset-0">
@@ -107,11 +148,16 @@ const LoginCover = () => {
                                 <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Sign in</h1>
                                 <p className="text-base font-bold leading-normal text-white-dark">Enter your email and password to login</p>
                             </div>
-                            <form className="space-y-5 dark:text-white" onSubmit={submitForm}>
+                            <form className="space-y-5 dark:text-white" onSubmit={(e)=>{
+                                e.preventDefault();
+                                submitForm();
+                            }}>
                                 <div>
                                     <label htmlFor="Email">Email</label>
                                     <div className="relative text-white-dark">
-                                        <input id="Email" type="email" placeholder="Enter Email" className="form-input ps-10 placeholder:text-white-dark" />
+                                        <input id="Email" type="email" placeholder="Enter Email" value={email} onChange={(e) => {
+                                            setEmail(e.target.value)
+                                        }} className="form-input ps-10 placeholder:text-white-dark" />
                                         <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                             <IconMail fill={true} />
                                         </span>
@@ -120,7 +166,9 @@ const LoginCover = () => {
                                 <div>
                                     <label htmlFor="Password">Password</label>
                                     <div className="relative text-white-dark">
-                                        <input id="Password" type="password" placeholder="Enter Password" className="form-input ps-10 placeholder:text-white-dark" />
+                                        <input id="Password" type="password" placeholder="Enter Password" value={password} onChange={(e) => {
+                                            setPassword(e.target.value)
+                                        }} className="form-input ps-10 placeholder:text-white-dark" />
                                         <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                             <IconLockDots fill={true} />
                                         </span>
@@ -132,7 +180,11 @@ const LoginCover = () => {
                                         <span className="text-white-dark">Subscribe to weekly newsletter</span>
                                     </label>
                                 </div>
-                                <button type="submit" className="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">
+                                <button type="submit" disabled={!isFormValid.status || loading} className="btn btn-gradient disabled:opacity-70 !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">
+                                    {
+                                        loading &&
+                                        <span className="animate-spin border-2 border-white border-l-transparent rounded-full w-5 h-5 ltr:mr-4 rtl:ml-4 inline-block align-middle"></span>
+                                    }
                                     Sign in
                                 </button>
                             </form>
@@ -183,7 +235,7 @@ const LoginCover = () => {
                             </div>
                             <div className="text-center dark:text-white">
                                 Don't have an account ?&nbsp;
-                                <Link to="/auth/cover-register" className="uppercase text-primary underline transition hover:text-black dark:hover:text-white">
+                                <Link to="/signup" className="uppercase text-primary underline transition hover:text-black dark:hover:text-white">
                                     SIGN UP
                                 </Link>
                             </div>

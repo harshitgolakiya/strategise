@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { setPageTitle, toggleRTL } from '../../store/themeConfigSlice';
@@ -14,6 +14,8 @@ import IconFacebookCircle from '../../components/Icon/IconFacebookCircle';
 import IconTwitter from '../../components/Icon/IconTwitter';
 import IconGoogle from '../../components/Icon/IconGoogle';
 import StrategiseLogo from '../../assets/logo/StrategiseLogo';
+import { toast } from '@/utils/ui/toast';
+import { createUser } from '@/utils/air_utils/CreateUser';
 
 
 const RegisterCover = () => {
@@ -33,10 +35,52 @@ const RegisterCover = () => {
         }
     };
     const [flag, setFlag] = useState(themeConfig.locale);
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const isFormValid = useMemo(() => {
+        let validity = {
+            status: true,
+            message: ''
+        }
+        if (fullName === '' || email === '' || password === '') {
+            validity.status = false;
+            validity.message = 'All fields are required';
+        }
+        //other rules
+        return validity;
+    }, [fullName, email, password]);
 
     const submitForm = () => {
-        navigate('/index');
+        if (isFormValid) {
+            setLoading(true);
+            createUser(
+                email,
+                password,
+                fullName
+            ).then(() => {
+                setLoading(false);
+                toast.fire({
+                    icon: 'success',
+                    title: 'User created successfully',
+                    timer: 2000
+                })
+                setTimeout(() => {
+                    navigate('/login');
+                }, 2100)
+            }).catch((err) => {
+                setLoading(false);
+                toast.fire({
+                    icon: 'error',
+                    title: err.message,
+                    timer: 2000
+                })
+            });
+        }
     };
+
 
     return (
         <div>
@@ -110,11 +154,16 @@ const RegisterCover = () => {
                                 <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Sign Up</h1>
                                 <p className="text-base font-bold leading-normal text-white-dark">Enter your email and password to register</p>
                             </div>
-                            <form className="space-y-5 dark:text-white" onSubmit={submitForm}>
+                            <form className="space-y-5 dark:text-white" onSubmit={(e) => {
+                                e.preventDefault();
+                                submitForm();
+                            }}>
                                 <div>
                                     <label htmlFor="Name">Name</label>
                                     <div className="relative text-white-dark">
-                                        <input id="Name" type="text" placeholder="Enter Name" className="form-input ps-10 placeholder:text-white-dark" />
+                                        <input id="Name" type="text" placeholder="Enter Name" value={fullName} onChange={(e) => {
+                                            setFullName(e.target.value);
+                                        }} className="form-input ps-10 placeholder:text-white-dark" />
                                         <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                             <IconUser fill={true} />
                                         </span>
@@ -123,7 +172,9 @@ const RegisterCover = () => {
                                 <div>
                                     <label htmlFor="Email">Email</label>
                                     <div className="relative text-white-dark">
-                                        <input id="Email" type="email" placeholder="Enter Email" className="form-input ps-10 placeholder:text-white-dark" />
+                                        <input id="Email" type="email" placeholder="Enter Email" value={email} onChange={(e) => {
+                                            setEmail(e.target.value);
+                                        }} className="form-input ps-10 placeholder:text-white-dark" />
                                         <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                             <IconMail fill={true} />
                                         </span>
@@ -132,7 +183,9 @@ const RegisterCover = () => {
                                 <div>
                                     <label htmlFor="Password">Password</label>
                                     <div className="relative text-white-dark">
-                                        <input id="Password" type="password" placeholder="Enter Password" className="form-input ps-10 placeholder:text-white-dark" />
+                                        <input id="Password" type="password" placeholder="Enter Password" value={password} onChange={(e) => {
+                                            setPassword(e.target.value);
+                                        }} className="form-input ps-10 placeholder:text-white-dark" />
                                         <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                             <IconLockDots fill={true} />
                                         </span>
