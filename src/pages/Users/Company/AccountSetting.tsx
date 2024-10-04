@@ -146,7 +146,7 @@ const AccountSetting = () => {
                 <div className="flex items-center justify-between mb-5">
                     <h5 className="font-semibold text-lg dark:text-white-light">Settings</h5>
                 </div>
-                <div>
+                {/* <div>
                     <ul className="sm:flex font-semibold border-b border-[#ebedf2] dark:border-[#191e3a] mb-5 whitespace-nowrap overflow-y-auto">
                         <li className="inline-block">
                             <button
@@ -177,7 +177,7 @@ const AccountSetting = () => {
                             </button>
                         </li>
                     </ul>
-                </div>
+                </div> */}
                 {tabs === 'home' ? (
                     <div>
                         <form className="border border-[#ebedf2] dark:border-[#191e3a] rounded-3xl p-4 mb-5 bg-white dark:bg-black">
